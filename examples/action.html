@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Zabuto | Calendar | Action</title>
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- jQuery CDN -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+    <!-- Bootstrap CDN -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+
+    <!-- HTML5 IE enabling script Google CDN -->
+    <!--[if IE]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+    <!-- Zabuto -->
+    <link rel="stylesheet" type="text/css" href="//zabuto.com/assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="//zabuto.com/assets/css/examples.css">
+
+    <!-- Zabuto Calendar -->
+    <script src="../zabuto_calendar.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../zabuto_calendar.min.css">
+
+</head>
+<body>
+
+<!-- container -->
+<div class="container example">
+
+    <h1>
+        Calendar <span>Action</span>
+        <ul class="nav nav-pills pull-right">
+            <li><a class="pull-right" href="set_legend.html">&laquo; Set Legend</a></li>
+            <li><a class="pull-right" href="index.html">^ Example Index</a></li>
+        </ul>
+    </h1>
+
+    <hr>
+
+    <div class="row">
+        <div class="col-xs-6">
+            <p>You can add a function to the calendar to execute when the onclick event is triggered on a specific
+                day.</p>
+            <table>
+                <tr>
+                    <th>action</th>
+                    <td class="type">function</td>
+                    <td>The function to execute.</td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-xs-6">
+            <p>The function can be customized to your own needs. To retrieve the date you need to access the element
+                information using the calendar day ID. You can also check if an event is available for this date.
+<code>
+myFunction(this.id);
+function myFunction(id) {
+  var date = $("#" + id).data("date");
+  var hasEvent = $("#" + id).data("hasEvent");
+}
+</code>
+            </p>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+        <div class="col-xs-5">
+
+            <div id="my-calendar"></div>
+
+            <script type="application/javascript">
+                $(document).ready(function () {
+                    $("#my-calendar").zabuto_calendar({
+                        action: function () {
+                            return myFunction(this.id, false);
+                        },
+                        ajax: {
+                            url: "show_data.php?action=1",
+                            modal: true
+                        },
+                        legend: [
+                            {type: "text", label: "Special event", badge: "00"},
+                            {type: "block", label: "Regular event"}
+                        ]
+                    });
+                });
+
+                function myFunction(id, fromModal) {
+                    if (fromModal) {
+                        $("#" + id + "_modal").modal("hide");
+                    }
+                    var date = $("#" + id).data("date");
+                    var hasEvent = $("#" + id).data("hasEvent");
+                    if (hasEvent && !fromModal) {
+                        return false;
+                    }
+                    alert("You clicked on date " + date);
+                    return true;
+                }
+            </script>
+
+        </div>
+        <div class="col-xs-6 col-xs-offset-1">
+
+<code>
+&lt;script type=&quot;application/javascript&quot;&gt;
+  $(document).ready(function () {
+    $(&quot;#my-calendar&quot;).zabuto_calendar({
+      <span>action: function () {
+        return myFunction(this.id, false);
+      }</span>,
+      ajax: {
+        url: &quot;show_data.php?action=1&quot;,
+        modal: true
+      },
+      legend: [
+        {type: &quot;text&quot;, label: &quot;Special event&quot;, badge: &quot;00&quot;},
+        {type: &quot;block&quot;, label: &quot;Regular event&quot;}
+      ]
+  });
+});
+
+<span>function myFunction(id, fromModal) {
+  if (fromModal) {
+    $(&quot;#&quot; + id + &quot;_modal&quot;).modal(&quot;hide&quot;);
+  }
+  var date = $(&quot;#&quot; + id).data(&quot;date&quot;);
+  var hasEvent = $(&quot;#&quot; + id).data(&quot;hasEvent&quot;);
+  if (hasEvent &amp;&amp; !fromModal) {
+    return false;
+  }
+  alert(&quot;You clicked on date &quot; + date);
+  return true;
+}</span>
+&lt;/script&gt;
+</code>
+
+        </div>
+    </div>
+</div>
+<!-- /container -->
+
+</body>
+</html>

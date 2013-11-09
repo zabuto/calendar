@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Zabuto | Calendar | Set Legend</title>
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- jQuery CDN -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+    <!-- Bootstrap CDN -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+
+    <!-- HTML5 IE enabling script Google CDN -->
+    <!--[if IE]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+    <!-- Zabuto -->
+    <link rel="stylesheet" type="text/css" href="//zabuto.com/assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="//zabuto.com/assets/css/examples.css">
+
+    <!-- Zabuto Calendar -->
+    <script src="../zabuto_calendar.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../zabuto_calendar.min.css">
+
+</head>
+<body>
+
+<!-- container -->
+<div class="container example">
+
+    <h1>
+        Calendar <span>Set Legend</span>
+        <ul class="nav nav-pills pull-right">
+            <li><a class="pull-right" href="show_data.html">&laquo; Show Data</a></li>
+            <li><a class="pull-right" href="action.html">Action &raquo;</a></li>
+        </ul>
+    </h1>
+
+    <hr>
+
+    <div class="row">
+        <div class="col-xs-6">
+            <p>You can add a legend to clarify the styling of the date events shown on the calendar.</p>
+            <table>
+                <tr>
+                    <th>legend</th>
+                    <td class="type">array</td>
+                    <td>List of legend element objects.</td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-xs-6">
+            <p>This is the list of possible settings for a legend object:</p>
+            <table>
+                <tr>
+                    <th class="type">type</th>
+                    <td class="type">string</td>
+                    <td>The display type. Values 'text', 'block', 'list' and 'spacer' are allowed.</td>
+                </tr>
+                <tr>
+                    <th class="type">label</th>
+                    <td class="type">string</td>
+                    <td>Label. Required for display type 'text', optional for 'block'. Not used for 'list' or
+                        'spacer'.
+                    </td>
+                </tr>
+                <tr>
+                    <th class="type">badge</th>
+                    <td class="type">string</td>
+                    <td>Extra setting for display type 'text' to show badge information.</td>
+                </tr>
+                <tr>
+                    <th class="type">list</th>
+                    <td class="type">array</td>
+                    <td>Array of css classnames for the list of blocks for type 'list'.</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+        <div class="col-xs-5">
+
+            <div id="my-calendar"></div>
+
+            <style>
+                .grade-1 {
+                    background-color: #FA2601;
+                }
+
+                .grade-2 {
+                    background-color: #FA8A00;
+                }
+
+                .grade-3 {
+                    background-color: #FFEB00;
+                }
+
+                .grade-4 {
+                    background-color: #27AB00;
+                }
+            </style>
+
+            <script type="application/javascript">
+                $(document).ready(function () {
+                    $("#my-calendar").zabuto_calendar({
+                        legend: [
+                            {type: "text", label: "Special event", badge: "00"},
+                            {type: "block", label: "Regular event"},
+                            {type: "spacer"},
+                            {type: "text", label: "Bad"},
+                            {type: "list", list: ["grade-1", "grade-2", "grade-3", "grade-4"]},
+                            {type: "text", label: "Good"}
+                        ],
+                        ajax: {
+                            url: "show_data.php?grade=1"
+                        }
+                    });
+                });
+            </script>
+
+        </div>
+        <div class="col-xs-6 col-xs-offset-1">
+
+<code>
+&lt;!-- set the legend for the calendar --&gt;
+&lt;script type=&quot;application/javascript&quot;&gt;
+  $(document).ready(function () {
+    $(&quot;#my-calendar&quot;).zabuto_calendar({
+      <span>legend: [
+        {type: &quot;text&quot;, label: &quot;Special event&quot;, badge: &quot;00&quot;},
+        {type: &quot;block&quot;, label: &quot;Regular event&quot;},
+        {type: &quot;spacer&quot;},
+        {type: &quot;text&quot;, label: &quot;Bad&quot;},
+        {type: &quot;list&quot;, list: [&quot;grade-1&quot;, &quot;grade-2&quot;, &quot;grade-3&quot;, &quot;grade-4&quot;]},
+        {type: &quot;text&quot;, label: &quot;Good&quot;}
+      ]</span>,
+      ajax: {
+        url: &quot;show_data.php?grade=1&quot;
+      }
+    });
+  });
+&lt;/script&gt;
+</code>
+
+        </div>
+    </div>
+
+</div>
+<!-- /container -->
+
+</body>
+</html>
