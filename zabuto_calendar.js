@@ -539,6 +539,13 @@ $.fn.zabuto_calendar_language = function (lang) {
             };
             break;
 
+        case 'it':
+            return {
+                month_labels: ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"],
+                dow_labels: ["Lun", "Mar", "Mer", "Gio", "Ven", "Sab", "Dom"]
+            };
+            break;
+
         case 'nl':
             return {
                 month_labels: ["Januari", "Februari", "Maart", "April", "Mei", "Juni", "Juli", "Augustus", "September", "Oktober", "November", "December"],
