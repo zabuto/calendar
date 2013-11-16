@@ -11,9 +11,14 @@
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
 
-    <!-- HTML5 IE enabling script Google CDN -->
-    <!--[if IE]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Font Awesome CDN -->
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
 
     <!-- Zabuto -->
     <link rel="stylesheet" type="text/css" href="//zabuto.com/assets/css/style.css">
@@ -65,10 +70,21 @@
                     <td class="type">integer</td>
                     <td>Start the week on Sunday (0) or Monday (1).</td>
                 </tr>
+                <tr>
+                    <th>nav_icon</th>
+                    <td class="type">object</td>
+                    <td>Override 'prev' and/or 'next' icon html</td>
+                </tr>
             </table>
         </div>
         <div class="col-xs-6">
-            <p class="comment"><span class="glyphicon glyphicon-comment"></span> override other styling elements with your own css.</p>
+            <p class="comment"><span class="glyphicon glyphicon-comment"></span> override other styling elements with
+                your own css.</p>
+            <br>
+
+            <p><a href="http://fontawesome.io/" target="_blank">Font Awesome</a> was added to this page to show an
+                alternative icon example:</p>
+            <code>&lt;link href=&quot;//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css&quot; rel=&quot;stylesheet&quot;&gt;</code>
         </div>
     </div>
 
@@ -85,7 +101,11 @@
                         cell_border: true,
                         today: true,
                         show_days: false,
-                        weekstartson: 0
+                        weekstartson: 0,
+                        nav_icon: {
+                            prev: '<i class="fa fa-chevron-circle-left"></i>',
+                            next: '<i class="fa fa-chevron-circle-right"></i>'
+                        }
                     });
                 });
             </script>
@@ -102,7 +122,11 @@
       <span>cell_border: true,
       today: true,
       show_days: false,
-      weekstartson: 0</span>
+      weekstartson: 0,
+      nav_icon: {
+        prev: '&lt;i class=&quot;fa fa-chevron-circle-left&quot;&gt;&lt;/i&gt;',
+        next: '&lt;i class=&quot;fa fa-chevron-circle-right&quot;&gt;&lt;/i&gt;'
+      }</span>
     });
   });
 &lt;/script&gt;

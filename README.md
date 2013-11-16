@@ -40,9 +40,10 @@ You can customize the calendar with several settings:
 * today 	    (boolean) 	        Display today with a special badge.
 * show_days 	(boolean) 	        Show the days-of-week header.
 * weekstartson 	(integer) 	        Start the week on Sunday (0) or Monday (1).
+* nav_icon 	    (object)  	        Override 'prev' and/or 'next' icon html
 
 ## Date Events
-You are able to add date events by using a AJAX request with JSON data.
+You are able to add date events by using an AJAX request with JSON data.
 
 ```$("#my-calendar").zabuto_calendar( { ajax: { url: "{YOUR_URL}" } } );```
 
@@ -65,6 +66,7 @@ The legend consists of an array of objects in a specified format.
 Allowed values for type are 'text', 'block', 'list' and 'spacer'.
 The label is required for display type 'text' and optional for 'block'. It is not used for 'list' or 'spacer'.
 The badge can be used as an extra setting for display type 'text' to show badge information.
+You can use a classname as an extra setting for display type 'block' to add a css class to the element.
 The list contains an array of css classnames for the list of blocks for type 'list'.
 
 ## Action onclick

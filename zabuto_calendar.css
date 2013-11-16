@@ -60,10 +60,7 @@ div.zabuto_calendar div.calendar-month-navigation {
     cursor: pointer;
     margin: 0;
     padding: 0;
-    width: 50%;
-    margin-left: 25%;
     padding-top: 5px;
-    padding-bottom: 5px;
 }
 
 div.zabuto_calendar tr.calendar-dow-header th,

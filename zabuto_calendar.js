@@ -29,6 +29,7 @@ $.fn.zabuto_calendar = function (options) {
         $calendarElement.data('initMonth', opts.month);
         $calendarElement.data('monthLabels', opts.month_labels);
         $calendarElement.data('weekStartsOn', opts.weekstartson);
+        $calendarElement.data('navIcons', opts.nav_icon);
         $calendarElement.data('dowLabels', opts.dow_labels);
         $calendarElement.data('showToday', opts.today);
         $calendarElement.data('showDays', opts.show_days);
@@ -99,7 +100,12 @@ $.fn.zabuto_calendar = function (options) {
                                     if (itemLabel !== '') {
                                         itemLabel = '<span>' + itemLabel + '</span>';
                                     }
-                                    $legendObj.append('<span class="legend-' + item.type + '"><ul class="legend"><li class="event"></li></u>' + itemLabel + '</span>');
+                                    if (typeof(item.classname) === 'undefined') {
+                                        var listClassName = 'event';
+                                    } else {
+                                        var listClassName = 'event-styled ' + item.classname;
+                                    }
+                                    $legendObj.append('<span class="legend-' + item.type + '"><ul class="legend"><li class="' + listClassName + '"></li></u>' + itemLabel + '</span>');
                                     break;
                                 case 'list':
                                     if ('list' in item && typeof(item.list) == 'object' && item.list.length > 0) {
@@ -124,15 +130,26 @@ $.fn.zabuto_calendar = function (options) {
         }
 
         function appendMonthHeader($calendarElement, $tableObj, year, month) {
+            var navIcons = $calendarElement.data('navIcons');
+            var $prevMonthNavIcon = $('<span id="' + $calendarElement.attr('id') + '_nav-prev"><span class="glyphicon glyphicon-chevron-left"></span></span>');
+            var $nextMonthNavIcon = $('<span id="' + $calendarElement.attr('id') + '_nav-next"><span class="glyphicon glyphicon-chevron-right"></span></span>');
+            if (typeof(navIcons) === 'object') {
+                if ('prev' in navIcons) {
+                    $prevMonthNavIcon.html(navIcons.prev);
+                }
+                if ('next' in navIcons) {
+                    $nextMonthNavIcon.html(navIcons.next);
+                }
+            }
+
             var prevIsValid = $calendarElement.data('showPrevious');
             if (typeof(prevIsValid) === 'number' || prevIsValid === false) {
                 prevIsValid = checkMonthLimit($calendarElement.data('showPrevious'), true);
             }
 
-            if (prevIsValid === false) {
-                var $prevMonthNav = $('<div class="calendar-month-navigation"> </div>');
-            } else {
-                var $prevMonthNav = $('<div class="calendar-month-navigation"><span class="glyphicon glyphicon-chevron-left"></span></div>');
+            var $prevMonthNav = $('<div class="calendar-month-navigation"></div>');
+            if (prevIsValid !== false) {
+                $prevMonthNav.append($prevMonthNavIcon);
                 $prevMonthNav.click(function (e) {
                     month = (month - 1);
                     if (month == -1) {
@@ -148,10 +165,9 @@ $.fn.zabuto_calendar = function (options) {
                 nextIsValid = checkMonthLimit($calendarElement.data('showNext'), false);
             }
 
-            if (nextIsValid === false) {
-                var $nextMonthNav = $('<div class="calendar-month-navigation"> </div>');
-            } else {
-                var $nextMonthNav = $('<div class="calendar-month-navigation"><span class="glyphicon glyphicon-chevron-right"></span></div>');
+            var $nextMonthNav = $('<div class="calendar-month-navigation"></div>');
+            if (nextIsValid !== false) {
+                $nextMonthNav.append($nextMonthNavIcon);
                 $nextMonthNav.click(function (e) {
                     month = (month + 1);
                     if (month == 12) {
@@ -474,6 +490,7 @@ $.fn.zabuto_calendar = function (options) {
  *   today:             boolean,
  *   show_days:         boolean,
  *   weekstartson:      integer (0 = Sunday, 1 = Monday),
+ *   nav_icon:          object: prev: string, next: string
  *   ajax:              object: url: string, modal: boolean,
  *   legend:            object array, [{type: string, label: string, classname: string}]
  *   action:            function
@@ -492,6 +509,7 @@ $.fn.zabuto_calendar_defaults = function () {
         today: false,
         show_days: true,
         weekstartson: 1,
+        nav_icon: false,
         ajax: false,
         legend: false,
         action: false
