@@ -45,22 +45,42 @@
         <div class="col-xs-6">
             <p>You can add a function to the calendar to execute when the onclick event is triggered on a specific
                 day.</p>
+
+            <p>You are also able to add a function to the onclick event of the navigation to the previous or next month.</p>
+
             <table>
                 <tr>
                     <th>action</th>
                     <td class="type">function</td>
-                    <td>The function to execute.</td>
+                    <td>The function to execute when a date is clicked.</td>
+                </tr>
+                <tr>
+                    <th>action_nav</th>
+                    <td class="type">function</td>
+                    <td>The function to execute when the navigation to the previous or next month is clicked.</td>
                 </tr>
             </table>
         </div>
         <div class="col-xs-6">
-            <p>The function can be customized to your own needs. To retrieve the date you need to access the element
-                information using the calendar day ID. You can also check if an event is available for this date.
+            <p>To retrieve the date for the date action you need to access the element information using the calendar
+                day ID. You can also check if an event is available for this date.
 <code>
-myFunction(this.id);
-function myFunction(id) {
+myDateFunction(this.id);
+function myDateFunction(id) {
   var date = $("#" + id).data("date");
   var hasEvent = $("#" + id).data("hasEvent");
+}
+</code>
+            </p>
+
+            <p>To retrieve information on the navigation action you need to access the element information using the
+                calendar navigation ID. To can access the navigation info itself (prev/next) and information on the
+                previous or next year and month.
+<code>
+myNavFunction(this.id);
+function myNavFunction(id) {
+  var nav = $("#" + id).data("navigation");
+  var to = $("#" + id).data("to");
 }
 </code>
             </p>
@@ -72,13 +92,30 @@ function myFunction(id) {
     <div class="row">
         <div class="col-xs-5">
 
+            <div id="date-popover" class="popover top"
+                 style="cursor: pointer; display: block; margin-left: 33%; margin-top: -50px; width: 175px;">
+                <div class="arrow"></div>
+                <h3 class="popover-title" style="display: none;"></h3>
+
+                <div id="date-popover-content" class="popover-content"></div>
+            </div>
+
             <div id="my-calendar"></div>
 
             <script type="application/javascript">
                 $(document).ready(function () {
+                    $("#date-popover").popover({html: true, trigger: "manual"});
+                    $("#date-popover").hide();
+                    $("#date-popover").click(function (e) {
+                        $(this).hide();
+                    });
+
                     $("#my-calendar").zabuto_calendar({
                         action: function () {
-                            return myFunction(this.id, false);
+                            return myDateFunction(this.id, false);
+                        },
+                        action_nav: function () {
+                            return myNavFunction(this.id);
                         },
                         ajax: {
                             url: "show_data.php?action=1",
@@ -91,7 +128,8 @@ function myFunction(id) {
                     });
                 });
 
-                function myFunction(id, fromModal) {
+                function myDateFunction(id, fromModal) {
+                    $("#date-popover").hide();
                     if (fromModal) {
                         $("#" + id + "_modal").modal("hide");
                     }
@@ -100,8 +138,16 @@ function myFunction(id) {
                     if (hasEvent && !fromModal) {
                         return false;
                     }
-                    alert("You clicked on date " + date);
+                    $("#date-popover-content").html('You clicked on date ' + date);
+                    $("#date-popover").show();
                     return true;
+                }
+
+                function myNavFunction(id) {
+                    $("#date-popover").hide();
+                    var nav = $("#" + id).data("navigation");
+                    var to = $("#" + id).data("to");
+                    console.log('nav ' + nav + ' to: ' + to.month + '/' + to.year);
                 }
             </script>
 
@@ -109,35 +155,57 @@ function myFunction(id) {
         <div class="col-xs-6 col-xs-offset-1">
 
 <code>
-&lt;script type=&quot;application/javascript&quot;&gt;
-  $(document).ready(function () {
-    $(&quot;#my-calendar&quot;).zabuto_calendar({
-      <span>action: function () {
-        return myFunction(this.id, false);
-      }</span>,
-      ajax: {
-        url: &quot;show_data.php?action=1&quot;,
-        modal: true
-      },
-      legend: [
-        {type: &quot;text&quot;, label: &quot;Special event&quot;, badge: &quot;00&quot;},
-        {type: &quot;block&quot;, label: &quot;Regular event&quot;}
-      ]
-  });
-});
+&lt;div id=&quot;date-popover&quot; class=&quot;popover top&quot; style=&quot;...&quot;&gt;
+    ...
+    &lt;div id=&quot;date-popover-content&quot; class=&quot;popover-content&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
 
-<span>function myFunction(id, fromModal) {
-  if (fromModal) {
-    $(&quot;#&quot; + id + &quot;_modal&quot;).modal(&quot;hide&quot;);
-  }
-  var date = $(&quot;#&quot; + id).data(&quot;date&quot;);
-  var hasEvent = $(&quot;#&quot; + id).data(&quot;hasEvent&quot;);
-  if (hasEvent &amp;&amp; !fromModal) {
-    return false;
-  }
-  alert(&quot;You clicked on date &quot; + date);
-  return true;
-}</span>
+&lt;div id=&quot;my-calendar&quot;&gt;&lt;/div&gt;
+
+&lt;script type=&quot;application/javascript&quot;&gt;
+    $(document).ready(function () {
+        $(&quot;#date-popover&quot;).popover(...);
+        ...
+
+        $(&quot;#my-calendar&quot;).zabuto_calendar({
+            <span>action: function () {
+                return myDateFunction(this.id, false);
+            },
+            action_nav: function () {
+                return myNavFunction(this.id);
+            }</span>,
+            ajax: {
+                url: &quot;show_data.php?action=1&quot;,
+                modal: true
+            },
+            legend: [
+                {type: &quot;text&quot;, label: &quot;Special event&quot;, badge: &quot;00&quot;},
+                {type: &quot;block&quot;, label: &quot;Regular event&quot;}
+            ]
+        });
+    });
+
+    <span>function myDateFunction(id, fromModal) {
+        $(&quot;#date-popover&quot;).hide();
+        if (fromModal) {
+            $(&quot;#&quot; + id + &quot;_modal&quot;).modal(&quot;hide&quot;);
+        }
+        var date = $(&quot;#&quot; + id).data(&quot;date&quot;);
+        var hasEvent = $(&quot;#&quot; + id).data(&quot;hasEvent&quot;);
+        if (hasEvent &amp;&amp; !fromModal) {
+            return false;
+        }
+        $(&quot;#date-popover-content&quot;).html('You clicked on date ' + date);
+        $(&quot;#date-popover&quot;).show();
+        return true;
+    }
+
+    function myNavFunction(id) {
+        $(&quot;#date-popover&quot;).hide();
+        var nav = $(&quot;#&quot; + id).data(&quot;navigation&quot;);
+        var to = $(&quot;#&quot; + id).data(&quot;to&quot;);
+        console.log('nav ' + nav + ' to: \ + to.month + '/' + to.year);
+    }</span>
 &lt;/script&gt;
 </code>
 

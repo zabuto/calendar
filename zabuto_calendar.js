@@ -39,6 +39,7 @@ $.fn.zabuto_calendar = function (options) {
         $calendarElement.data('ajaxSettings', opts.ajax);
         $calendarElement.data('legendList', opts.legend);
         $calendarElement.data('actionFunction', opts.action);
+        $calendarElement.data('actionNavFunction', opts.action_nav);
 
         drawCalendar();
 
@@ -131,8 +132,8 @@ $.fn.zabuto_calendar = function (options) {
 
         function appendMonthHeader($calendarElement, $tableObj, year, month) {
             var navIcons = $calendarElement.data('navIcons');
-            var $prevMonthNavIcon = $('<span id="' + $calendarElement.attr('id') + '_nav-prev"><span class="glyphicon glyphicon-chevron-left"></span></span>');
-            var $nextMonthNavIcon = $('<span id="' + $calendarElement.attr('id') + '_nav-next"><span class="glyphicon glyphicon-chevron-right"></span></span>');
+            var $prevMonthNavIcon = $('<span><span class="glyphicon glyphicon-chevron-left"></span></span>');
+            var $nextMonthNavIcon = $('<span><span class="glyphicon glyphicon-chevron-right"></span></span>');
             if (typeof(navIcons) === 'object') {
                 if ('prev' in navIcons) {
                     $prevMonthNavIcon.html(navIcons.prev);
@@ -148,15 +149,22 @@ $.fn.zabuto_calendar = function (options) {
             }
 
             var $prevMonthNav = $('<div class="calendar-month-navigation"></div>');
+            $prevMonthNav.attr('id', $calendarElement.attr('id') + '_nav-prev');
+            $prevMonthNav.data('navigation', 'prev');
             if (prevIsValid !== false) {
+                prevMonth = (month - 1);
+                prevYear = year;
+                if (prevMonth == -1) {
+                    prevYear = (prevYear - 1);
+                    prevMonth = 11;
+                }
+                $prevMonthNav.data('to', {year: prevYear, month: (prevMonth + 1)});
                 $prevMonthNav.append($prevMonthNavIcon);
+                if (typeof($calendarElement.data('actionNavFunction')) === 'function') {
+                    $prevMonthNav.click($calendarElement.data('actionNavFunction'));
+                }
                 $prevMonthNav.click(function (e) {
-                    month = (month - 1);
-                    if (month == -1) {
-                        year = (year - 1);
-                        month = 11;
-                    }
-                    drawTable($calendarElement, $tableObj, year, month);
+                    drawTable($calendarElement, $tableObj, prevYear, prevMonth);
                 });
             }
 
@@ -166,15 +174,22 @@ $.fn.zabuto_calendar = function (options) {
             }
 
             var $nextMonthNav = $('<div class="calendar-month-navigation"></div>');
+            $nextMonthNav.attr('id', $calendarElement.attr('id') + '_nav-next');
+            $nextMonthNav.data('navigation', 'next');
             if (nextIsValid !== false) {
+                nextMonth = (month + 1);
+                nextYear = year;
+                if (nextMonth == 12) {
+                    nextYear = (nextYear + 1);
+                    nextMonth = 0;
+                }
+                $nextMonthNav.data('to', {year: nextYear, month: (nextMonth + 1)});
                 $nextMonthNav.append($nextMonthNavIcon);
+                if (typeof($calendarElement.data('actionNavFunction')) === 'function') {
+                    $nextMonthNav.click($calendarElement.data('actionNavFunction'));
+                }
                 $nextMonthNav.click(function (e) {
-                    month = (month + 1);
-                    if (month == 12) {
-                        year = (year + 1);
-                        month = 0;
-                    }
-                    drawTable($calendarElement, $tableObj, year, month);
+                    drawTable($calendarElement, $tableObj, nextYear, nextMonth);
                 });
             }
 
@@ -494,6 +509,7 @@ $.fn.zabuto_calendar = function (options) {
  *   ajax:              object: url: string, modal: boolean,
  *   legend:            object array, [{type: string, label: string, classname: string}]
  *   action:            function
+ *   action_nav:        function
  */
 $.fn.zabuto_calendar_defaults = function () {
     var now = new Date();
@@ -512,7 +528,8 @@ $.fn.zabuto_calendar_defaults = function () {
         nav_icon: false,
         ajax: false,
         legend: false,
-        action: false
+        action: false,
+        action_nav: false
     };
     return settings;
 };

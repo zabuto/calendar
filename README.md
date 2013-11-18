@@ -70,16 +70,33 @@ You can use a classname as an extra setting for display type 'block' to add a cs
 The list contains an array of css classnames for the list of blocks for type 'list'.
 
 ## Action onclick
+
+You can add functions to the calendar to execute when onclick events are triggered.
+
+### Date
 You can add a function to the calendar to execute when the onclick event is triggered on a specific day.
 
-```$("#my-calendar").zabuto_calendar( { action: function() { myFunction(this.id); } } );```
+```$("#my-calendar").zabuto_calendar( { action: function() { myDateFunction(this.id); } } );```
 
-The function can be customized to your own needs. To retrieve the date you need to access the element information using the calendar day ID. You can also check if an event is available for this date.
+To retrieve the date you need to access the element information using the calendar day ID. You can also check if an event is available for this date.
 
-    function myFunction(id) {
+    function myDateFunction(id) {
         var date = $("#" + id).data("date");
         var hasEvent = $("#" + id).data("hasEvent");
     }
+
+### Navigation
+You are also able to add a function to the onclick event of the navigation to the previous or next month.
+
+```$("#my-calendar").zabuto_calendar( { action_nav: function() { myNavFunction(this.id); } } );```
+
+To retrieve information on the navigation action you need to access the element information using the calendar navigation ID. To can access the navigation info itself (prev/next) and information on the previous or next year and month.
+
+    function myNavFunction(id) {
+        var nav = $("#" + id).data("navigation");
+        var to = $("#" + id).data("to");
+    }
+
 
 ##Examples
 Examples for the use of the calendar are includes in the sources.

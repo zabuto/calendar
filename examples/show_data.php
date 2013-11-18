@@ -34,7 +34,7 @@ if (!empty($_REQUEST['year']) && !empty($_REQUEST['month'])) {
             $dates[$i]['body'] .= '<p>The second argument is true in this case, so the function can handle closing the modal window: <code>myFunction(dateId, true);</code></p>';
             $dates[$i]['footer'] = '
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" onclick="dateId = $(this).closest(\'.modal\').attr(\'dateId\'); myFunction(dateId, true);">Go ahead!</button>
+            <button type="button" class="btn btn-primary" onclick="dateId = $(this).closest(\'.modal\').attr(\'dateId\'); myDateFunction(dateId, true);">Go ahead!</button>
             ';
         }
     }
