@@ -92,7 +92,12 @@ $.fn.zabuto_calendar = function (options) {
                                     if (itemLabel !== '') {
                                         var itemBadge = '';
                                         if ('badge' in item) {
-                                            itemBadge = '<span class="badge badge-event">' + item.badge + '</span> ';
+                                            if (typeof(item.classname) === 'undefined') {
+                                                var badgeClassName = 'badge-event';
+                                            } else {
+                                                var badgeClassName = item.classname;
+                                            }
+                                            itemBadge = '<span class="badge ' + badgeClassName + '">' + item.badge + '</span> ';
                                         }
                                         $legendObj.append('<span class="legend-' + item.type + '">' + itemBadge + itemLabel + '</span>');
                                     }

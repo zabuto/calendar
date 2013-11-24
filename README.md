@@ -66,7 +66,7 @@ The legend consists of an array of objects in a specified format.
 Allowed values for type are 'text', 'block', 'list' and 'spacer'.
 The label is required for display type 'text' and optional for 'block'. It is not used for 'list' or 'spacer'.
 The badge can be used as an extra setting for display type 'text' to show badge information.
-You can use a classname as an extra setting for display type 'block' to add a css class to the element.
+You can use a classname as an extra setting for display type 'text' or 'block' to add a css class to the legend item.
 The list contains an array of css classnames for the list of blocks for type 'list'.
 
 ## Action onclick
