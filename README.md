@@ -31,7 +31,7 @@ Use this code to initialize the calendar:
 ## Settings
 You can customize the calendar with several settings:
 
-* language      (string)            Set the desired language of the calendar (de, en, es, fr, it, nl).
+* language      (string)            Set the desired language of the calendar (de, en, es, fr, it, nl, pt).
 * year 	        (integer) 	        Initialize the calendar in a different year than the current year.
 * month 	    (integer)	        Initialize the calendar in a different month than the current month (January=1, December=12).
 * show_previous (boolean|integer) 	Disable the navigation to previous months completely or only allow a maximum number of months.

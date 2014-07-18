@@ -365,13 +365,13 @@ $.fn.zabuto_calendar = function (options) {
                 data: data,
                 dataType: 'json'
             }).done(function (response) {
-                    var events = [];
-                    $.each(response, function (k, v) {
-                        events.push(response[k]);
-                    });
-                    $calendarElement.data('events', events);
-                    drawEvents($calendarElement);
+                var events = [];
+                $.each(response, function (k, v) {
+                    events.push(response[k]);
                 });
+                $calendarElement.data('events', events);
+                drawEvents($calendarElement);
+            });
         }
 
         function drawEvents($calendarElement) {
@@ -590,6 +590,13 @@ $.fn.zabuto_calendar_language = function (lang) {
             return {
                 month_labels: ["Januari", "Februari", "Maart", "April", "Mei", "Juni", "Juli", "Augustus", "September", "Oktober", "November", "December"],
                 dow_labels: ["Ma", "Di", "Wo", "Do", "Vr", "Za", "Zo"]
+            };
+            break;
+
+        case 'pt':
+            return {
+                month_labels: ["Janeiro", "Fevereiro", "Marco", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"],
+                dow_labels: ["S", "T", "Q", "Q", "S", "S", "D"]
             };
             break;
     }
