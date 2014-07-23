@@ -59,8 +59,10 @@ $.fn.zabuto_calendar = function (options) {
             var $containerHtml = $('<div class="zabuto_calendar" id="' + $calendarElement.attr('id') + '"></div>');
             $containerHtml.append($tableObj);
             $containerHtml.append($legendObj);
-
+			
             $calendarElement.append($containerHtml);
+			
+			checkEvents($calendarElement, dateInitObj.getFullYear(), dateInitObj.getMonth());
         }
 
         function drawTable($calendarElement, $tableObj, year, month) {
@@ -71,7 +73,7 @@ $.fn.zabuto_calendar = function (options) {
             $tableObj = appendMonthHeader($calendarElement, $tableObj, year, month);
             $tableObj = appendDayOfWeekHeader($calendarElement, $tableObj);
             $tableObj = appendDaysOfMonth($calendarElement, $tableObj, year, month);
-            checkEvents($calendarElement, year, month);
+            
             return $tableObj;
         }
 
@@ -352,26 +354,39 @@ $.fn.zabuto_calendar = function (options) {
                 return true;
             }
 
-            if (typeof(ajaxSettings) != 'object' || typeof(ajaxSettings.url) == 'undefined') {
+            if (typeof(ajaxSettings) != 'object' || ( typeof(ajaxSettings.url) == 'undefined'  && typeof(ajaxSettings.json) == 'undefined') ) {
                 alert('Invalid calendar event settings');
                 return false;
             }
+			
+			var data = { year: year, month: (month + 1)};
+			
+			if(typeof(ajaxSettings.url) == 'undefined') {
+				var events = [];
+				var response = ajaxSettings.json;
+				$.each(response, function (k, v) {
+					events.push(response[k]);
+				});
+				$calendarElement.data('events', events);
+				drawEvents($calendarElement);
+			} else {
+				$.ajax({
+					type: 'GET',
+					url: ajaxSettings.url,
+					data: data,
+					dataType: 'json'
+				}).done(function (response) {
+						var events = [];
+						$.each(response, function (k, v) {
+							events.push(response[k]);
+						});
+						$calendarElement.data('events', events);
+						drawEvents($calendarElement);
+					});
+			}
+            
 
-            var data = { year: year, month: (month + 1)};
-
-            $.ajax({
-                type: 'GET',
-                url: ajaxSettings.url,
-                data: data,
-                dataType: 'json'
-            }).done(function (response) {
-                var events = [];
-                $.each(response, function (k, v) {
-                    events.push(response[k]);
-                });
-                $calendarElement.data('events', events);
-                drawEvents($calendarElement);
-            });
+           
         }
 
         function drawEvents($calendarElement) {
@@ -590,13 +605,6 @@ $.fn.zabuto_calendar_language = function (lang) {
             return {
                 month_labels: ["Januari", "Februari", "Maart", "April", "Mei", "Juni", "Juli", "Augustus", "September", "Oktober", "November", "December"],
                 dow_labels: ["Ma", "Di", "Wo", "Do", "Vr", "Za", "Zo"]
-            };
-            break;
-
-        case 'pt':
-            return {
-                month_labels: ["Janeiro", "Fevereiro", "Marco", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"],
-                dow_labels: ["S", "T", "Q", "Q", "S", "S", "D"]
             };
             break;
     }
