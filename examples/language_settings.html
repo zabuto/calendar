@@ -3,6 +3,7 @@
 <head>
     <title>Zabuto | Calendar | Language Settings</title>
     <meta name="robots" content="noindex, nofollow">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
     <!-- jQuery CDN -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -58,30 +59,37 @@
                 <tr>
                     <th class="type">de</th>
                     <td>Deutsch (German)</td>
-                </tr>
-                <tr>
-                    <th class="type">en</th>
-                    <td>English <span class="text-muted">[default value]</span></td>
-                </tr>
-                <tr>
-                    <th class="type">es</th>
-                    <td>Espanol (Spanish)</td>
-                </tr>
-                <tr>
-                    <th class="type">fr</th>
-                    <td>Francais (French)</td>
-                </tr>
-                <tr>
-                    <th class="type">it</th>
-                    <td>Italiano (Italian)</td>
-                </tr>
-                <tr>
+                    <td style="width: 25px;">&nbsp;</td>
                     <th class="type">nl</th>
                     <td>Nederlands (Dutch)</td>
                 </tr>
                 <tr>
+                    <th class="type">en</th>
+                    <td>English <span class="text-muted">[default value]</span></td>
+                    <td>&nbsp;</td>
                     <th class="type">pt</th>
                     <td>Portugues (Portuguese)</td>
+                </tr>
+                <tr>
+                    <th class="type">es</th>
+                    <td>Espanol (Spanish)</td>
+                    <td>&nbsp;</td>
+                    <th class="type">ru</th>
+                    <td>ру́сский язы́кR (Russian)</td>
+                </tr>
+                <tr>
+                    <th class="type">fr</th>
+                    <td>Francais (French)</td>
+                    <td>&nbsp;</td>
+                    <th class="type">se</th>
+                    <td>Svenska (Swedish)</td>
+                </tr>
+                <tr>
+                    <th class="type">it</th>
+                    <td>Italiano (Italian)</td>
+                    <td>&nbsp;</td>
+                    <th class="type">tr</th>
+                    <td>Türkçe (Turkish)</td>
                 </tr>
             </table>
         </div>
@@ -106,14 +114,14 @@
         <div class="col-xs-6 col-xs-offset-1">
 
 <code>
-&lt;!-- set the language code --&gt;
-&lt;script type=&quot;application/javascript&quot;&gt;
-  $(document).ready(function () {
+    &lt;!-- set the language code --&gt;
+    &lt;script type=&quot;application/javascript&quot;&gt;
+    $(document).ready(function () {
     $(&quot;#my-calendar&quot;).zabuto_calendar({
-      <span>language: &quot;nl&quot;</span>
+    <span>language: &quot;nl&quot;</span>
     });
-  });
-&lt;/script&gt;
+    });
+    &lt;/script&gt;
 </code>
 
         </div>

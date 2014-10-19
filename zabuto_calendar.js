@@ -357,7 +357,7 @@ $.fn.zabuto_calendar = function (options) {
                 return false;
             }
 
-            var data = { year: year, month: (month + 1)};
+            var data = {year: year, month: (month + 1)};
 
             $.ajax({
                 type: 'GET',
@@ -597,6 +597,27 @@ $.fn.zabuto_calendar_language = function (lang) {
             return {
                 month_labels: ["Janeiro", "Fevereiro", "Marco", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"],
                 dow_labels: ["S", "T", "Q", "Q", "S", "S", "D"]
+            };
+            break;
+
+        case 'ru':
+            return {
+                month_labels: ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"],
+                dow_labels: ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вск"]
+            };
+            break;
+
+        case 'se':
+            return {
+                month_labels: ["Januari", "Februari", "Mars", "April", "Maj", "Juni", "Juli", "Augusti", "September", "Oktober", "November", "December"],
+                dow_labels: ["Mån", "Tis", "Ons", "Tor", "Fre", "Lör", "Sön"]
+            };
+            break;
+
+        case 'tr':
+            return {
+                month_labels: ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"],
+                dow_labels: ["Pts", "Salı", "Çar", "Per", "Cuma", "Cts", "Paz"]
             };
             break;
     }
