@@ -43,8 +43,9 @@ You can customize the calendar with several settings:
 * nav_icon 	    (object)  	        Override 'prev' and/or 'next' icon html
 
 ## Date Events
-You are able to add date events by using an AJAX request with JSON data.
+You are able to add date events by using fixed data or an AJAX request with JSON data.
 
+```$("#my-calendar").zabuto_calendar( { data: [] } );```
 ```$("#my-calendar").zabuto_calendar( { ajax: { url: "{YOUR_URL}" } } );```
 
 The JSON data has to be an array of events in a specified format.

@@ -44,10 +44,32 @@
 
     <div class="row">
         <div class="col-xs-6">
-            <p>You can add date events to the calendar by using an AJAX GET request. The response has to return a JSON
-                encoded array of events in a specified format.</p>
+            <p>You can add date events to the calendar by using fixed data or an AJAX GET request.
+                The events have to be returned as a JSON encoded array in a specified format.</p>
 
             <p>Details of an event can be shown with a modal window.</p>
+
+            <p>Fixed data example:</p>
+            <table>
+                <tr>
+                    <th colspan="2">data</th>
+                    <td colspan="2" class="type">array [</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th></th>
+                    <th>object</th>
+                    <td class="type">{ ... }</td>
+                    <td>See the JSON data format example</td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="type">]</td>
+                </tr>
+            </table>
+
+            <br>
+
+            <p>AJAX example:</p>
             <table>
                 <tr>
                     <th colspan="2">ajax</th>
@@ -119,6 +141,19 @@
       }</span>
     });
   });
+&lt;/script&gt;
+
+&lt;!-- use fixed data --&gt;
+&lt;script type=&quot;application/javascript&quot;&gt;
+var eventData = [
+    {"date":"2015-01-01","badge":false,"title":"Example 1"},
+    {"date":"2015-01-02","badge":true,"title":"Example 2"},
+];
+$(document).ready(function () {
+$(&quot;#my-calendar&quot;).zabuto_calendar({
+  <span>data: eventData</span>
+});
+});
 &lt;/script&gt;
 </code>
 
