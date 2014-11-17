@@ -41,6 +41,7 @@ $.fn.zabuto_calendar = function (options) {
         $calendarElement.data('legendList', opts.legend);
         $calendarElement.data('actionFunction', opts.action);
         $calendarElement.data('actionNavFunction', opts.action_nav);
+		$calendarElement.data('actionMonthFunction', opts.action_month);
 
         drawCalendar();
 
@@ -210,10 +211,18 @@ $.fn.zabuto_calendar = function (options) {
             var $nextMonthCell = $('<th></th>').append($nextMonthNav);
 
             var $currMonthLabel = $('<span>' + monthLabels[month] + ' ' + year + '</span>');
-            $currMonthLabel.dblclick(function () {
-                var dateInitObj = $calendarElement.data('initDate');
-                drawTable($calendarElement, $tableObj, dateInitObj.getFullYear(), dateInitObj.getMonth());
-            });
+			
+			if (typeof($calendarElement.data('actionMonthFunction')) === 'function') {
+				$currMonthLabel.click($calendarElement.data('actionMonthFunction'));
+			}
+			else {
+				// defaults to the original behavior (click instead of dblclick), which is redrawing the table
+				
+				$currMonthLabel.click(function () {
+					var dateInitObj = $calendarElement.data('initDate');
+					drawTable($calendarElement, $tableObj, dateInitObj.getFullYear(), dateInitObj.getMonth());
+				});
+			}
 
             var $currMonthCell = $('<th colspan="5"></th>');
             $currMonthCell.append($currMonthLabel);
@@ -547,6 +556,7 @@ $.fn.zabuto_calendar = function (options) {
  *   legend:            object array, [{type: string, label: string, classname: string}]
  *   action:            function
  *   action_nav:        function
+ *   action_month:      function
  */
 $.fn.zabuto_calendar_defaults = function () {
     var now = new Date();
@@ -567,7 +577,8 @@ $.fn.zabuto_calendar_defaults = function () {
         ajax: false,
         legend: false,
         action: false,
-        action_nav: false
+        action_nav: false,
+		action_month: false
     };
     return settings;
 };
