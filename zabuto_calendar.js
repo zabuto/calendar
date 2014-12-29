@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Zabuto Calendar
  *
  * Dependencies
@@ -604,7 +604,7 @@ $.fn.zabuto_calendar_language = function (lang) {
                 dow_labels: ["أثنين", "ثلاثاء", "اربعاء", "خميس", "جمعه", "سبت", "أحد"]
             };
             break;
-            
+
         case 'es':
             return {
                 month_labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
@@ -658,6 +658,13 @@ $.fn.zabuto_calendar_language = function (lang) {
             return {
                 month_labels: ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"],
                 dow_labels: ["Pts", "Salı", "Çar", "Per", "Cuma", "Cts", "Paz"]
+            };
+            break;
+
+        case 'hu':
+            return {
+                month_labels: ["Január", "Február", "Március", "Április", "Május", "Június", "Július", "Augusztus", "Szeptember", "Október", "November", "December"],
+                dow_labels: ["H", "K", "Sze", "Cs", "P", "Szo", "V"]
             };
             break;
     }
