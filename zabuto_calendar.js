@@ -23,6 +23,7 @@ $.fn.zabuto_calendar = function (options) {
 
     this.each(function () {
         var $calendarElement = $(this);
+
         $calendarElement.attr('id', "zabuto_calendar_" + Math.floor(Math.random() * 99999).toString(36));
 
         $calendarElement.data('initYear', opts.year);
@@ -353,7 +354,11 @@ $.fn.zabuto_calendar = function (options) {
             var jsonData = $calendarElement.data('jsonData');
             var ajaxSettings = $calendarElement.data('ajaxSettings');
 
-            $calendarElement.data('events', false);
+            var ev = $.Event('calendar.events.check', {year: year, month: month});
+
+            $calendarElement
+                .trigger(ev)
+                .data('events', false);
 
             if (false !== jsonData) {
                 return jsonEvents($calendarElement);
@@ -408,6 +413,10 @@ $.fn.zabuto_calendar = function (options) {
                     var id = $calendarElement.attr('id') + '_' + value.date;
                     var $dowElement = $('#' + id);
                     var $dayElement = $('#' + id + '_day');
+
+                    if (!$dowElement.length) {
+                        return;
+                    }
 
                     $dowElement.data('hasEvent', true);
 
