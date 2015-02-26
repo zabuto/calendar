@@ -22,9 +22,12 @@ $.fn.zabuto_calendar = function (options) {
     opts = $.extend({}, opts, languageSettings);
 
     this.each(function () {
+        var api = {};
         var $calendarElement = $(this);
 
         $calendarElement.attr('id', "zabuto_calendar_" + Math.floor(Math.random() * 99999).toString(36));
+
+        $calendarElement.data('api', api);
 
         $calendarElement.data('initYear', opts.year);
         $calendarElement.data('initMonth', opts.month);
@@ -418,7 +421,9 @@ $.fn.zabuto_calendar = function (options) {
                         return;
                     }
 
-                    $dowElement.data('hasEvent', true);
+                    $dowElement
+                        .data('hasEvent', true)
+                        .data('event', value);
 
                     if (typeof(value.title) !== 'undefined') {
                         $dowElement.attr('title', value.title);
@@ -533,6 +538,15 @@ $.fn.zabuto_calendar = function (options) {
             }
             return false;
         }
+
+        $.extend(api, {
+            jsonEvents: function(jsonData) {
+                if (jsonData) {
+                    $calendarElement.data('jsonData', jsonData);
+                }
+                return jsonEvents($calendarElement);
+            }
+        });
     }); // each()
 
     return this;
