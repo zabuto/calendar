@@ -408,6 +408,8 @@ $.fn.zabuto_calendar = function (options) {
                     var id = $calendarElement.attr('id') + '_' + value.date;
                     var $dowElement = $('#' + id);
                     var $dayElement = $('#' + id + '_day');
+                    
+                    $dowElement.data(value.data);
 
                     $dowElement.data('hasEvent', true);
 
