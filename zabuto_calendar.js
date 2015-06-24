@@ -23,6 +23,9 @@ $.fn.zabuto_calendar = function (options) {
 
     this.each(function () {
         var $calendarElement = $(this);
+		
+		$.extend(opts, $calendarElement.data());
+		
         $calendarElement.attr('id', "zabuto_calendar_" + Math.floor(Math.random() * 99999).toString(36));
 
         $calendarElement.data('initYear', opts.year);
