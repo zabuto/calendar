@@ -626,6 +626,13 @@ $.fn.zabuto_calendar_language = function (lang) {
             };
             break;
 
+        case 'ja':
+            return {
+                month_labels: ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"],
+                dow_labels: ["月", "日", "水", "木", "金", "土", "日"]
+            };
+            break;
+
         case 'nl':
             return {
                 month_labels: ["Januari", "Februari", "Maart", "April", "Mei", "Juni", "Juli", "Augustus", "September", "Oktober", "November", "December"],
