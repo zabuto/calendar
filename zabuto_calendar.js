@@ -660,6 +660,13 @@ $.fn.zabuto_calendar_language = function (lang) {
                 dow_labels: ["Pts", "Salı", "Çar", "Per", "Cuma", "Cts", "Paz"]
             };
             break;
+			
+		case 'pl':
+            return {
+                month_labels: ["Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień"],
+                dow_labels: ["Pn", "Wt", "Śr", "Czw", "Pt", "Sob", "Niedz"]
+            };
+            break;
     }
 
 };
