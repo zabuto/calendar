@@ -633,6 +633,13 @@ $.fn.zabuto_calendar_language = function (lang) {
             };
             break;
 
+        case 'pl':
+            return {
+                month_labels: ["Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień"],
+                dow_labels: ["pon.", "wt.", "śr.", "czw.", "pt.", "sob.", "niedz."]
+            };
+            break;
+
         case 'pt':
             return {
                 month_labels: ["Janeiro", "Fevereiro", "Marco", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"],
