@@ -660,6 +660,13 @@ $.fn.zabuto_calendar_language = function (lang) {
                 dow_labels: ["Pts", "Salı", "Çar", "Per", "Cuma", "Cts", "Paz"]
             };
             break;
+
+        case 'fi':
+            return {
+                month_labels: ["Tammikuu", "Helmikuu", "Maaliskuu", "Huhtikuu", "Toukokuu", "Kesäkuu", "Heinäkuu", "Elokuu", "Syyskuu", "Lokakuu", "Marraskuu", "Joulukuu"],
+                dow_labels: ["Ma", "Ti", "Ke", "To", "Pe", "La", "Su"]
+            };
+            break;
     }
 
 };
