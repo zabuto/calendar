@@ -278,8 +278,9 @@ $.fn.zabuto_calendar = function (options) {
                         var $dayElement = $('<div id="' + dayId + '" class="day" >' + currDayOfMonth + '</div>');
                         $dayElement.data('day', currDayOfMonth);
 
-                        if ($calendarElement.data('showToday') === true) {
-                            if (isToday(year, month, currDayOfMonth)) {
+                        if (isToday(year, month, currDayOfMonth)) {
+                            $dayElement.addClass('today');
+                            if ($calendarElement.data('showToday') === true) {
                                 $dayElement.html('<span class="badge badge-today">' + currDayOfMonth + '</span>');
                             }
                         }
