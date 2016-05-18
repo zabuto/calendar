@@ -278,12 +278,12 @@ $.fn.zabuto_calendar = function (options) {
                         var $dayElement = $('<div id="' + dayId + '" class="day" >' + currDayOfMonth + '</div>');
                         $dayElement.data('day', currDayOfMonth);
 
-						if (isToday(year, month, currDayOfMonth)) {
-							$dayElement.addClass('today');
-							if ($calendarElement.data('showToday') === true) {
-								$dayElement.html('<span class="badge badge-today">' + currDayOfMonth + '</span>');
-							}
-						}
+                        if (isToday(year, month, currDayOfMonth)) {
+                            $dayElement.addClass('today');
+                            if ($calendarElement.data('showToday') === true) {
+                                $dayElement.html('<span class="badge badge-today">' + currDayOfMonth + '</span>');
+                            }
+                        }
 
                         var $dowElement = $('<td id="' + dateId + '"></td>');
                         $dowElement.append($dayElement);
