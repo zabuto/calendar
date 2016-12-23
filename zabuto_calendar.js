@@ -52,10 +52,10 @@ $.fn.zabuto_calendar = function (options) {
 
             var tableClassHtml = ($calendarElement.data('cellBorder') === true) ? ' table-bordered' : '';
 
-            $tableObj = $('<table class="table' + tableClassHtml + '"></table>');
+           	var $tableObj = $('<table class="table' + tableClassHtml + '"></table>');
             $tableObj = drawTable($calendarElement, $tableObj, dateInitObj.getFullYear(), dateInitObj.getMonth());
 
-            $legendObj = drawLegend($calendarElement);
+            var $legendObj = drawLegend($calendarElement);
 
             var $containerHtml = $('<div class="zabuto_calendar" id="' + $calendarElement.attr('id') + '"></div>');
             $containerHtml.append($tableObj);
@@ -460,6 +460,7 @@ $.fn.zabuto_calendar = function (options) {
         }
 
         function dateAsString(year, month, day) {
+          	var m,d;
             d = (day < 10) ? '0' + day : day;
             m = month + 1;
             m = (m < 10) ? '0' + m : m;
