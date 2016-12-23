@@ -163,8 +163,8 @@ $.fn.zabuto_calendar = function (options) {
             $prevMonthNav.attr('id', $calendarElement.attr('id') + '_nav-prev');
             $prevMonthNav.data('navigation', 'prev');
             if (prevIsValid !== false) {
-                prevMonth = (month - 1);
-                prevYear = year;
+                var prevMonth = (month - 1);
+                var prevYear = year;
                 if (prevMonth == -1) {
                     prevYear = (prevYear - 1);
                     prevMonth = 11;
@@ -188,8 +188,8 @@ $.fn.zabuto_calendar = function (options) {
             $nextMonthNav.attr('id', $calendarElement.attr('id') + '_nav-next');
             $nextMonthNav.data('navigation', 'next');
             if (nextIsValid !== false) {
-                nextMonth = (month + 1);
-                nextYear = year;
+                var nextMonth = (month + 1);
+                var nextYear = year;
                 if (nextMonth == 12) {
                     nextYear = (nextYear + 1);
                     nextMonth = 0;
