@@ -674,6 +674,13 @@ $.fn.zabuto_calendar_language = function (lang) {
                 dow_labels: ["Ma", "Ti", "Ke", "To", "Pe", "La", "Su"]
             };
             break;
+
+        case 'ua':
+            return {
+                month_labels: ["Січень", "Лютий", "Березень", "Квітень", "Травень", "Червень", "Липень", "Серпень", "Вересень", "Жовтень", "Листопад", "Грудень"],
+                dow_labels: ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Нд"]
+            };
+            break;
     }
 
 };
