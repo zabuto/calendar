@@ -21,9 +21,9 @@
     <!-- Font Awesome CDN -->
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
 
-    <!-- Zabuto -->
+    <!-- Example style -->
     <link rel="stylesheet" type="text/css" href="//zabuto.com/assets/css/style.css">
-    <link rel="stylesheet" type="text/css" href="//zabuto.com/assets/css/examples.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
 
     <!-- Zabuto Calendar -->
     <script src="../zabuto_calendar.min.js"></script>
@@ -116,20 +116,20 @@
 
 <code>
 &lt;!-- set the border for the days and hide the days of the week header
-     plus start the week on sunday and not monday --&gt;
+plus start the week on sunday and not monday --&gt;
 &lt;script type=&quot;application/javascript&quot;&gt;
-  $(document).ready(function () {
-    $(&quot;#my-calendar&quot;).zabuto_calendar({
-      <span>cell_border: true,
-      today: true,
-      show_days: false,
-      weekstartson: 0,
-      nav_icon: {
-        prev: '&lt;i class=&quot;fa fa-chevron-circle-left&quot;&gt;&lt;/i&gt;',
-        next: '&lt;i class=&quot;fa fa-chevron-circle-right&quot;&gt;&lt;/i&gt;'
-      }</span>
-    });
+$(document).ready(function () {
+  $(&quot;#my-calendar&quot;).zabuto_calendar({
+    <span>cell_border: true,
+    today: true,
+    show_days: false,
+    weekstartson: 0,
+    nav_icon: {
+      prev: '&lt;i class=&quot;fa fa-chevron-circle-left&quot;&gt;&lt;/i&gt;',
+      next: '&lt;i class=&quot;fa fa-chevron-circle-right&quot;&gt;&lt;/i&gt;'
+    }</span>
   });
+});
 &lt;/script&gt;
 </code>
 

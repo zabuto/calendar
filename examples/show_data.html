@@ -18,9 +18,9 @@
     <script src="//oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
 
-    <!-- Zabuto -->
+    <!-- Example style -->
     <link rel="stylesheet" type="text/css" href="//zabuto.com/assets/css/style.css">
-    <link rel="stylesheet" type="text/css" href="//zabuto.com/assets/css/examples.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
 
     <!-- Zabuto Calendar -->
     <script src="../zabuto_calendar.min.js"></script>
@@ -86,7 +86,9 @@
                     <td class="type"><br>}</td>
                     <th>modal</th>
                     <td class="type">boolean</td>
-                    <td>Use a Bootstap JS modal window. The information will be shown with a click on the day of the event.</td>
+                    <td>Use a Bootstap JS modal window. The information will be shown with a click on the day of the
+                        event.
+                    </td>
                 </tr>
             </table>
         </div>
@@ -133,26 +135,26 @@
 <code>
 &lt;!-- show date events with a modal window --&gt;
 &lt;script type=&quot;application/javascript&quot;&gt;
-  $(document).ready(function () {
-    $(&quot;#my-calendar&quot;).zabuto_calendar({
-      <span>ajax: {
-          url: &quot;show_data.php&quot;,
-          modal: true
-      }</span>
-    });
+$(document).ready(function () {
+  $(&quot;#my-calendar&quot;).zabuto_calendar({
+    <span>ajax: {
+      url: &quot;show_data.php&quot;,
+      modal: true
+    }</span>
   });
+});
 &lt;/script&gt;
 
 &lt;!-- use fixed data --&gt;
 &lt;script type=&quot;application/javascript&quot;&gt;
 var eventData = [
-    {"date":"2015-01-01","badge":false,"title":"Example 1"},
-    {"date":"2015-01-02","badge":true,"title":"Example 2"}
+  {"date":"2015-01-01","badge":false,"title":"Example 1"},
+  {"date":"2015-01-02","badge":true,"title":"Example 2"}
 ];
 $(document).ready(function () {
-$(&quot;#my-calendar&quot;).zabuto_calendar({
-  <span>data: eventData</span>
-});
+  $(&quot;#my-calendar&quot;).zabuto_calendar({
+    <span>data: eventData</span>
+  });
 });
 &lt;/script&gt;
 </code>

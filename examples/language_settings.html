@@ -18,9 +18,9 @@
     <script src="//oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
 
-    <!-- Zabuto -->
+    <!-- Example style -->
     <link rel="stylesheet" type="text/css" href="//zabuto.com/assets/css/style.css">
-    <link rel="stylesheet" type="text/css" href="//zabuto.com/assets/css/examples.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
 
     <!-- Zabuto Calendar -->
     <script src="../zabuto_calendar.min.js"></script>
@@ -55,50 +55,52 @@
         </div>
         <div class="col-xs-6">
             <p>The calendar supports these language codes:</p>
-            <table>
-                <tr>
-                    <th class="type">de</th>
-                    <td>Deutsch (German)</td>
-                    <td style="width: 25px;">&nbsp;</td>
-                    <th class="type">nl</th>
-                    <td>Nederlands (Dutch)</td>
-                </tr>
-                <tr>
-                    <th class="type">en</th>
-                    <td>English <span class="text-muted">[default value]</span></td>
-                    <td>&nbsp;</td>
-                    <th class="type">pt</th>
-                    <td>Portugues (Portuguese)</td>
-                </tr>
-                <tr>
-                    <th class="type">es</th>
-                    <td>Espanol (Spanish)</td>
-                    <td>&nbsp;</td>
-                    <th class="type">ru</th>
-                    <td>ру́сский язы́кR (Russian)</td>
-                </tr>
-                <tr>
-                    <th class="type">fr</th>
-                    <td>Francais (French)</td>
-                    <td>&nbsp;</td>
-                    <th class="type">se</th>
-                    <td>Svenska (Swedish)</td>
-                </tr>
-                <tr>
-                    <th class="type">it</th>
-                    <td>Italiano (Italian)</td>
-                    <td>&nbsp;</td>
-                    <th class="type">tr</th>
-                    <td>Türkçe (Turkish)</td>
-                </tr>
-                <tr>
-                    <th class="type">ar</th>
-                    <td>arabic</td>
-                    <td>&nbsp;</td>
-                    <th class="type">ar</th>
-                    <td>عربى (arabic)</td>
-                </tr>
-            </table>
+            <div class="row">
+                <div class="col-xs-6">
+                    <dl class="dl-horizontal languages">
+                        <dt>ar</dt>
+                        <dd>عربى (Arabic)</dd>
+                        <dt>de</dt>
+                        <dd>Deutsch (German)</dd>
+                        <dt>en</dt>
+                        <dd>English <span class="text-muted">[default value]</span></dd>
+                        <dt>es</dt>
+                        <dd>Espanol (Spanish)</dd>
+                        <dt>fi</dt>
+                        <dd>Finnish</dd>
+                        <dt>fr</dt>
+                        <dd>Francais (French)</dd>
+                        <dt>hu</dt>
+                        <dd>Magyar (Hungarian)</dd>
+                        <dt>id</dt>
+                        <dd>Indonesian</dd>
+                        <dt>it</dt>
+                        <dd>Italiano (Italian)</dd>
+                    </dl>
+                </div>
+                <div class="col-xs-6">
+                    <dl class="dl-horizontal languages">
+                        <dt>jp</dt>
+                        <dd>Japanese</dd>
+                        <dt>nl</dt>
+                        <dd>Nederlands (Dutch)</dd>
+                        <dt>no</dt>
+                        <dd>Norwegian</dd>
+                        <dt>pl</dt>
+                        <dd>Polish</dd>
+                        <dt>pt</dt>
+                        <dd>Portugues (Portuguese)</dd>
+                        <dt>ru</dt>
+                        <dd>ру́сский язы́кR (Russian)</dd>
+                        <dt>se</dt>
+                        <dd>Svenska (Swedish)</dd>
+                        <dt>tr</dt>
+                        <dd>Türkçe (Turkish)</dd>
+                        <dt>ua</dt>
+                        <dd>Ukrainian</dd>
+                    </dl>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -121,14 +123,14 @@
         <div class="col-xs-6 col-xs-offset-1">
 
 <code>
-    &lt;!-- set the language code --&gt;
-    &lt;script type=&quot;application/javascript&quot;&gt;
-    $(document).ready(function () {
-    $(&quot;#my-calendar&quot;).zabuto_calendar({
+&lt;!-- set the language code --&gt;
+&lt;script type=&quot;application/javascript&quot;&gt;
+$(document).ready(function () {
+  $(&quot;#my-calendar&quot;).zabuto_calendar({
     <span>language: &quot;nl&quot;</span>
-    });
-    });
-    &lt;/script&gt;
+  });
+});
+&lt;/script&gt;
 </code>
 
         </div>

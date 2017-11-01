@@ -1,0 +1,65 @@
+.example {
+    padding-top: 30px;
+    min-height: 650px;
+}
+
+.example code {
+    display: block;
+    padding: 0;
+    border: 0;
+    background-color: transparent;
+    color: #000000;
+    white-space: pre-wrap;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+
+.example h1 a {
+    padding-top: 0.8em;
+    font-size: 0.45em;
+    font-weight: normal;
+    color: #564e49;
+}
+
+.example code span {
+    font-weight: bold;
+    color: #dd1144;
+}
+
+.example table th,
+.example table td {
+    vertical-align: top;
+}
+
+.example table th {
+    padding-right: 15px;
+    text-align: left;
+}
+
+.example dl.languages dt {
+    width: 20px;
+    text-align: left;
+}
+
+.example dl.languages dd {
+    margin-left: 30px;
+}
+
+.example table th.type,
+.example dl.languages dt {
+    color: #564e49;
+    font-family: Monaco, Menlo, Consolas, "Courier New", monospace;
+    font-size: 1.05em;
+}
+
+.example table td.type {
+    padding-right: 15px;
+    color: #564e49;
+    font-family: Monaco, Menlo, Consolas, "Courier New", monospace;
+    font-size: 1.08em;
+}
+
+.example p.comment {
+    color: #564e49;
+    font-style: italic;
+}
