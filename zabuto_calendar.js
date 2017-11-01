@@ -592,6 +592,20 @@ $.fn.zabuto_calendar_language = function (lang) {
             };
             break;
 
+        case "cn":
+            return {
+                month_labels: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+                dow_labels: ["星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期日"]
+            };
+            break;
+
+        case "cs":
+            return {
+                month_labels: ["Leden", "Únor", "Březen", "Duben", "Květen", "Červen", "Červenec", "Srpen", "Září", "Říjen", "Listopad", "Prosinec"],
+                dow_labels: ["Po", "Út", "St", "Čt", "Pá", "So", "Ne"]
+            };
+            break;
+
         case 'de':
             return {
                 month_labels: ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"],
@@ -630,7 +644,7 @@ $.fn.zabuto_calendar_language = function (lang) {
         case 'hu':
             return {
                 month_labels: ["Január", "Február", "Március", "Április", "Május", "Június", "Július", "Augusztus", "Szeptember", "Október", "November", "December"],
-                dow_labels: ["H", "K", "Sze", "Cs", "P", "Szo", "V"]
+                dow_labels: ["Hé", "Ke", "Sze", "Cs", "Pé", "Szo", "Va"]
             };
             break;
 
@@ -694,6 +708,13 @@ $.fn.zabuto_calendar_language = function (lang) {
             return {
                 month_labels: ["Januari", "Februari", "Mars", "April", "Maj", "Juni", "Juli", "Augusti", "September", "Oktober", "November", "December"],
                 dow_labels: ["Mån", "Tis", "Ons", "Tor", "Fre", "Lör", "Sön"]
+            };
+            break;
+
+        case 'sk':
+            return {
+                month_labels: ["Január", "Február", "Marec", "Apríl", "Máj", "Jún", "Júl", "August", "September", "Október", "November", "December"],
+                dow_labels: ["Po", "Ut", "St", "Št", "Pi", "So", "Ne"]
             };
             break;
 
