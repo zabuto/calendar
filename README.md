@@ -50,7 +50,7 @@ You are able to add date events by using fixed data or an AJAX request with JSON
 
 The JSON data has to be an array of events in a specified format.
 
-```{date: yyyy-mm-dd, badge: boolean, title: string, body: string: footer: string, classname: string}```
+```{date: yyyy-mm-dd, badge: boolean, title: string, body: string, footer: string, classname: string}```
 
 ### Modal Event Window
 You can use the *title*, *body* and *footer* elements of the element data in a Bootstrap.js modal window.
