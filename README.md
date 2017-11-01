@@ -99,12 +99,12 @@ To retrieve information on the navigation action you need to access the element 
     }
 
 
-##Examples
+## Examples
 Examples for the use of the calendar are includes in the sources.
 You can also check them out in the demo: [http://zabuto.com/dev/calendar/examples/](http://zabuto.com/dev/calendar/examples/)
 
 
-##License
+## License
 Copyright (c) 2013 Anke Heijnen <anke@zabuto.com>
 
 Permission is hereby granted, free of charge, to any person
