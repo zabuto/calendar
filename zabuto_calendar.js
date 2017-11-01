@@ -584,6 +584,13 @@ $.fn.zabuto_calendar_language = function (lang) {
     }
 
     switch (lang.toLowerCase()) {
+        case 'ar':
+            return {
+                month_labels: ["يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو", "يوليو", "أغسطس", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"],
+                dow_labels: ["أثنين", "ثلاثاء", "اربعاء", "خميس", "جمعه", "سبت", "أحد"]
+            };
+            break;
+
         case 'de':
             return {
                 month_labels: ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"],
@@ -597,25 +604,18 @@ $.fn.zabuto_calendar_language = function (lang) {
                 dow_labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
             };
             break;
-            
-         case 'jp':
-            return {
-                month_labels: ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"],
-                dow_labels: ["月", "火", "水", "木", "金", "土", "日"]
-            };
-            break;
 
-        case 'ar':
-            return {
-                month_labels: ["يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو", "يوليو", "أغسطس", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"],
-                dow_labels: ["أثنين", "ثلاثاء", "اربعاء", "خميس", "جمعه", "سبت", "أحد"]
-            };
-            break;
-            
         case 'es':
             return {
                 month_labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
                 dow_labels: ["Lu", "Ma", "Mi", "Ju", "Vi", "Sá", "Do"]
+            };
+            break;
+
+        case 'fi':
+            return {
+                month_labels: ["Tammikuu", "Helmikuu", "Maaliskuu", "Huhtikuu", "Toukokuu", "Kesäkuu", "Heinäkuu", "Elokuu", "Syyskuu", "Lokakuu", "Marraskuu", "Joulukuu"],
+                dow_labels: ["Ma", "Ti", "Ke", "To", "Pe", "La", "Su"]
             };
             break;
 
@@ -626,6 +626,20 @@ $.fn.zabuto_calendar_language = function (lang) {
             };
             break;
 
+        case 'hu':
+            return {
+                month_labels: ["Január", "Február", "Március", "Április", "Május", "Június", "Július", "Augusztus", "Szeptember", "Október", "November", "December"],
+                dow_labels: ["H", "K", "Sze", "Cs", "P", "Szo", "V"]
+            };
+            break;
+
+        case 'id':
+            return {
+                month_labels: ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"],
+                dow_labels: ["Senin", "Selasa", "Rabu", "Kamis", "Jum'at", "Sabtu", "Minggu"]
+            };
+            break;
+
         case 'it':
             return {
                 month_labels: ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"],
@@ -633,10 +647,24 @@ $.fn.zabuto_calendar_language = function (lang) {
             };
             break;
 
+        case 'jp':
+            return {
+                month_labels: ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"],
+                dow_labels: ["月", "火", "水", "木", "金", "土", "日"]
+            };
+            break;
+
         case 'nl':
             return {
                 month_labels: ["Januari", "Februari", "Maart", "April", "Mei", "Juni", "Juli", "Augustus", "September", "Oktober", "November", "December"],
                 dow_labels: ["Ma", "Di", "Wo", "Do", "Vr", "Za", "Zo"]
+            };
+            break;
+
+        case 'no':
+            return {
+                month_labels: ["Januar", "Februar", "Mars", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Desember"],
+                dow_labels: ["Ma", "Ti", "On", "To", "Fr", "L\u00f8", "S\u00f8"]
             };
             break;
 
@@ -672,13 +700,6 @@ $.fn.zabuto_calendar_language = function (lang) {
             return {
                 month_labels: ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"],
                 dow_labels: ["Pts", "Salı", "Çar", "Per", "Cuma", "Cts", "Paz"]
-            };
-            break;
-
-        case 'fi':
-            return {
-                month_labels: ["Tammikuu", "Helmikuu", "Maaliskuu", "Huhtikuu", "Toukokuu", "Kesäkuu", "Heinäkuu", "Elokuu", "Syyskuu", "Lokakuu", "Marraskuu", "Joulukuu"],
-                dow_labels: ["Ma", "Ti", "Ke", "To", "Pe", "La", "Su"]
             };
             break;
 
