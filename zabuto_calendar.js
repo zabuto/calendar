@@ -57,7 +57,7 @@ $.fn.zabuto_calendar = function (options) {
 
             var $legendObj = drawLegend($calendarElement);
 
-            var $containerHtml = $('<div class="zabuto_calendar" id="' + $calendarElement.attr('id') + '"></div>');
+            var $containerHtml = $('<div class="zabuto_calendar"></div>');
             $containerHtml.append($tableObj);
             $containerHtml.append($legendObj);
 
@@ -206,8 +206,8 @@ $.fn.zabuto_calendar = function (options) {
 
             var monthLabels = $calendarElement.data('monthLabels');
 
-            var $prevMonthCell = $('<th></th>').append($prevMonthNav);
-            var $nextMonthCell = $('<th></th>').append($nextMonthNav);
+            var $prevMonthCell = $('<td></td>').append($prevMonthNav);
+            var $nextMonthCell = $('<td></td>').append($nextMonthNav);
 
             var $currMonthLabel = $('<span>' + monthLabels[month] + ' ' + year + '</span>');
             $currMonthLabel.dblclick(function () {
@@ -215,7 +215,7 @@ $.fn.zabuto_calendar = function (options) {
                 drawTable($calendarElement, $tableObj, dateInitObj.getFullYear(), dateInitObj.getMonth());
             });
 
-            var $currMonthCell = $('<th colspan="5"></th>');
+            var $currMonthCell = $('<td colspan="5"></td>');
             $currMonthCell.append($currMonthLabel);
 
             var $monthHeaderRow = $('<tr class="calendar-month-header"></tr>');
