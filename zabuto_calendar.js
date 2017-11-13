@@ -593,6 +593,13 @@ $.fn.zabuto_calendar_language = function (lang) {
             };
             break;
 
+		 case "az":
+            return {
+                month_labels: ["Yanvar", "Fevral", "Mart", "Aprel", "May", "İyun", "İyul", "Avqust", "Sentyabr", "Oktyabr", "Noyabr", "Dekabr"],
+                dow_labels: ["B.e", "Ç.A", "Çərş", "C.A", "Cümə", "Şən", "Baz"]
+            };
+            break;
+			
         case "cn":
             return {
                 month_labels: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
