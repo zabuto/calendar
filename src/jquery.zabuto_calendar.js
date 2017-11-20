@@ -6,7 +6,7 @@
  * - Twitter Bootstrap (3.0.2)
  */
 
-if (typeof jQuery == 'undefined') {
+if (typeof jQuery === 'undefined') {
     throw new Error('jQuery is not loaded');
 }
 
@@ -40,9 +40,7 @@ $.fn.zabuto_calendar = function (options) {
         $calendarElement.data('ajaxSettings', opts.ajax);
         $calendarElement.data('legendList', opts.legend);
         $calendarElement.data('actionFunction', opts.action);
-        $calendarElement.data('actionNavFunction', opts.action_nav);
-
-        drawCalendar();
+        $calendarElement.data('actionNavFunction', opts.action_nav);        
 
         function drawCalendar() {
             var dateInitYear = parseInt($calendarElement.data('initYear'));
@@ -51,13 +49,14 @@ $.fn.zabuto_calendar = function (options) {
             $calendarElement.data('initDate', dateInitObj);
 
             var tableClassHtml = ($calendarElement.data('cellBorder') === true) ? ' table-bordered' : '';
+            var $tableObj, $legendObj;
 
-            var $tableObj = $('<table class="table' + tableClassHtml + '"></table>');
+            $tableObj = $('<table class="table' + tableClassHtml + '"></table>');
             $tableObj = drawTable($calendarElement, $tableObj, dateInitObj.getFullYear(), dateInitObj.getMonth());
 
-            var $legendObj = drawLegend($calendarElement);
+            $legendObj = drawLegend($calendarElement);
 
-            var $containerHtml = $('<div class="zabuto_calendar"></div>');
+            var $containerHtml = $('<div class="zabuto_calendar" id="' + $calendarElement.attr('id') + '"></div>');
             $containerHtml.append($tableObj);
             $containerHtml.append($legendObj);
 
@@ -68,6 +67,8 @@ $.fn.zabuto_calendar = function (options) {
                 checkEvents($calendarElement, dateInitObj.getFullYear(), dateInitObj.getMonth());
             }
         }
+        
+        drawCalendar();
 
         function drawTable($calendarElement, $tableObj, year, month) {
             var dateCurrObj = new Date(year, month, 1, 0, 0, 0, 0);
@@ -84,9 +85,12 @@ $.fn.zabuto_calendar = function (options) {
         function drawLegend($calendarElement) {
             var $legendObj = $('<div class="legend" id="' + $calendarElement.attr('id') + '_legend"></div>');
             var legend = $calendarElement.data('legendList');
-            if (typeof(legend) == 'object' && legend.length > 0) {
+            var badgeClassName, listClassName;
+            
+            
+            if (typeof(legend) === 'object' && legend.length > 0) {
                 $(legend).each(function (index, item) {
-                    if (typeof(item) == 'object') {
+                    if (typeof(item) === 'object') {
                         if ('type' in item) {
                             var itemLabel = '';
                             if ('label' in item) {
@@ -99,9 +103,9 @@ $.fn.zabuto_calendar = function (options) {
                                         var itemBadge = '';
                                         if ('badge' in item) {
                                             if (typeof(item.classname) === 'undefined') {
-                                                var badgeClassName = 'badge-event';
+                                                badgeClassName = 'badge-event';
                                             } else {
-                                                var badgeClassName = item.classname;
+                                                badgeClassName = item.classname;
                                             }
                                             itemBadge = '<span class="badge ' + badgeClassName + '">' + item.badge + '</span> ';
                                         }
@@ -113,15 +117,15 @@ $.fn.zabuto_calendar = function (options) {
                                         itemLabel = '<span>' + itemLabel + '</span>';
                                     }
                                     if (typeof(item.classname) === 'undefined') {
-                                        var listClassName = 'event';
+                                        listClassName = 'event';
                                     } else {
-                                        var listClassName = 'event-styled ' + item.classname;
+                                        listClassName = 'event-styled ' + item.classname;
                                     }
-                                    $legendObj.append('<span class="legend-' + item.type + '"><ul class="legend"><li class="' + listClassName + '"></li></ul>' + itemLabel + '</span>');
+                                    $legendObj.append('<span class="legend-' + item.type + '"><ul class="legend"><li class="' + listClassName + '"></li></u>' + itemLabel + '</span>');
                                     break;
                                 case 'list':
-                                    if ('list' in item && typeof(item.list) == 'object' && item.list.length > 0) {
-                                        var $legendUl = $('<ul class="legend"></ul>');
+                                    if ('list' in item && typeof(item.list) === 'object' && item.list.length > 0) {
+                                        var $legendUl = $('<ul class="legend"></u>');
                                         $(item.list).each(function (listIndex, listClassName) {
                                             $legendUl.append('<li class="' + listClassName + '"></li>');
                                         });
@@ -145,6 +149,10 @@ $.fn.zabuto_calendar = function (options) {
             var navIcons = $calendarElement.data('navIcons');
             var $prevMonthNavIcon = $('<span><span class="glyphicon glyphicon-chevron-left"></span></span>');
             var $nextMonthNavIcon = $('<span><span class="glyphicon glyphicon-chevron-right"></span></span>');
+            
+            var prevMonth, prevYear, nextMonth, nextYear;
+            
+            
             if (typeof(navIcons) === 'object') {
                 if ('prev' in navIcons) {
                     $prevMonthNavIcon.html(navIcons.prev);
@@ -163,9 +171,9 @@ $.fn.zabuto_calendar = function (options) {
             $prevMonthNav.attr('id', $calendarElement.attr('id') + '_nav-prev');
             $prevMonthNav.data('navigation', 'prev');
             if (prevIsValid !== false) {
-                var prevMonth = (month - 1);
-                var prevYear = year;
-                if (prevMonth == -1) {
+                prevMonth = (month - 1);
+                prevYear = year;
+                if (prevMonth === -1) {
                     prevYear = (prevYear - 1);
                     prevMonth = 11;
                 }
@@ -175,6 +183,7 @@ $.fn.zabuto_calendar = function (options) {
                     $prevMonthNav.click($calendarElement.data('actionNavFunction'));
                 }
                 $prevMonthNav.click(function (e) {
+                    e.preventDefault();
                     drawTable($calendarElement, $tableObj, prevYear, prevMonth);
                 });
             }
@@ -188,9 +197,9 @@ $.fn.zabuto_calendar = function (options) {
             $nextMonthNav.attr('id', $calendarElement.attr('id') + '_nav-next');
             $nextMonthNav.data('navigation', 'next');
             if (nextIsValid !== false) {
-                var nextMonth = (month + 1);
-                var nextYear = year;
-                if (nextMonth == 12) {
+                nextMonth = (month + 1);
+                nextYear = year;
+                if (nextMonth === 12) {
                     nextYear = (nextYear + 1);
                     nextMonth = 0;
                 }
@@ -200,14 +209,15 @@ $.fn.zabuto_calendar = function (options) {
                     $nextMonthNav.click($calendarElement.data('actionNavFunction'));
                 }
                 $nextMonthNav.click(function (e) {
+                    e.preventDefault();
                     drawTable($calendarElement, $tableObj, nextYear, nextMonth);
                 });
             }
 
             var monthLabels = $calendarElement.data('monthLabels');
 
-            var $prevMonthCell = $('<td></td>').append($prevMonthNav);
-            var $nextMonthCell = $('<td></td>').append($nextMonthNav);
+            var $prevMonthCell = $('<th></th>').append($prevMonthNav);
+            var $nextMonthCell = $('<th></th>').append($nextMonthNav);
 
             var $currMonthLabel = $('<span>' + monthLabels[month] + ' ' + year + '</span>');
             $currMonthLabel.dblclick(function () {
@@ -215,7 +225,7 @@ $.fn.zabuto_calendar = function (options) {
                 drawTable($calendarElement, $tableObj, dateInitObj.getFullYear(), dateInitObj.getMonth());
             });
 
-            var $currMonthCell = $('<td colspan="5"></td>');
+            var $currMonthCell = $('<th colspan="5"></th>');
             $currMonthCell.append($currMonthLabel);
 
             var $monthHeaderRow = $('<tr class="calendar-month-header"></tr>');
@@ -244,8 +254,7 @@ $.fn.zabuto_calendar = function (options) {
             return $tableObj;
         }
 
-        function appendDaysOfMonth($calendarElement, $tableObj, year, month) {
-            var ajaxSettings = $calendarElement.data('ajaxSettings');
+        function appendDaysOfMonth($calendarElement, $tableObj, year, month) {            
             var weeksInMonth = calcWeeksInMonth(year, month);
             var lastDayinMonth = calcLastDayInMonth(year, month);
             var firstDow = calcDayOfWeek(year, month, 1);
@@ -254,17 +263,21 @@ $.fn.zabuto_calendar = function (options) {
 
             var weekStartsOn = $calendarElement.data('weekStartsOn');
             if (weekStartsOn === 0) {
-                if (lastDow == 6) {
+                if (lastDow === 6) {
                     weeksInMonth++;
                 }
-                if (firstDow == 6 && (lastDow == 0 || lastDow == 1 || lastDow == 5)) {
+                if (firstDow === 6 && (lastDow === 0 || lastDow === 1 || lastDow === 5)) {
                     weeksInMonth--;
                 }
                 firstDow++;
-                if (firstDow == 7) {
+                if (firstDow === 7) {
                     firstDow = 0;
                 }
             }
+            
+            var dowElementClick = function() {
+                $calendarElement.data('selectedDate', $(this).data('date'));
+            };
 
             for (var wk = 0; wk < weeksInMonth; wk++) {
                 var $dowRow = $('<tr class="calendar-dow"></tr>');
@@ -278,9 +291,8 @@ $.fn.zabuto_calendar = function (options) {
                         var $dayElement = $('<div id="' + dayId + '" class="day" >' + currDayOfMonth + '</div>');
                         $dayElement.data('day', currDayOfMonth);
 
-                        if (isToday(year, month, currDayOfMonth)) {
-                            $dayElement.addClass('today');
-                            if ($calendarElement.data('showToday') === true) {
+                        if ($calendarElement.data('showToday') === true) {
+                            if (isToday(year, month, currDayOfMonth)) {
                                 $dayElement.html('<span class="badge badge-today">' + currDayOfMonth + '</span>');
                             }
                         }
@@ -293,9 +305,7 @@ $.fn.zabuto_calendar = function (options) {
 
                         if (typeof($calendarElement.data('actionFunction')) === 'function') {
                             $dowElement.addClass('dow-clickable');
-                            $dowElement.click(function () {
-                                $calendarElement.data('selectedDate', $(this).data('date'));
-                            });
+                            $dowElement.click(dowElementClick.apply($dowElement));                            
                             $dowElement.click($calendarElement.data('actionFunction'));
                         }
 
@@ -303,7 +313,7 @@ $.fn.zabuto_calendar = function (options) {
 
                         currDayOfMonth++;
                     }
-                    if (dow == 6) {
+                    if (dow === 6) {
                         firstDow = 0;
                     }
                 }
@@ -375,9 +385,8 @@ $.fn.zabuto_calendar = function (options) {
         function ajaxEvents($calendarElement, year, month) {
             var ajaxSettings = $calendarElement.data('ajaxSettings');
 
-            if (typeof(ajaxSettings) != 'object' || typeof(ajaxSettings.url) == 'undefined') {
-                alert('Invalid calendar event settings');
-                return false;
+            if (typeof(ajaxSettings) !== 'object' || typeof(ajaxSettings.url) === 'undefined') {                
+                throw new Error('Invalid calendar event settings');                
             }
 
             var data = {year: year, month: (month + 1)};
@@ -389,7 +398,7 @@ $.fn.zabuto_calendar = function (options) {
                 dataType: 'json'
             }).done(function (response) {
                 var events = [];
-                $.each(response, function (k, v) {
+                $.each(response, function (k) {
                     events.push(response[k]);
                 });
                 $calendarElement.data('events', events);
@@ -399,8 +408,7 @@ $.fn.zabuto_calendar = function (options) {
             return true;
         }
 
-        function drawEvents($calendarElement, type) {
-            var jsonData = $calendarElement.data('jsonData');
+        function drawEvents($calendarElement, type) {            
             var ajaxSettings = $calendarElement.data('ajaxSettings');
 
             var events = $calendarElement.data('events');
@@ -463,11 +471,12 @@ $.fn.zabuto_calendar = function (options) {
         function isToday(year, month, day) {
             var todayObj = new Date();
             var dateObj = new Date(year, month, day);
-            return (dateObj.toDateString() == todayObj.toDateString());
+            return (dateObj.toDateString() === todayObj.toDateString());
         }
 
         function dateAsString(year, month, day) {
-            var m, d;
+            var d,m;
+            
             d = (day < 10) ? '0' + day : day;
             m = month + 1;
             m = (m < 10) ? '0' + m : m;
@@ -477,7 +486,7 @@ $.fn.zabuto_calendar = function (options) {
         function calcDayOfWeek(year, month, day) {
             var dateObj = new Date(year, month, day, 0, 0, 0, 0);
             var dow = dateObj.getDay();
-            if (dow == 0) {
+            if (dow === 0) {
                 dow = 6;
             } else {
                 dow--;
@@ -587,164 +596,77 @@ $.fn.zabuto_calendar_defaults = function () {
  * @returns {{month_labels: Array, dow_labels: Array}}
  */
 $.fn.zabuto_calendar_language = function (lang) {
-    if (typeof(lang) == 'undefined' || lang === false) {
+    if (typeof(lang) === 'undefined' || lang === false) {
         lang = 'en';
     }
 
     switch (lang.toLowerCase()) {
-        case 'ar':
-            return {
-                month_labels: ["يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو", "يوليو", "أغسطس", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"],
-                dow_labels: ["أثنين", "ثلاثاء", "اربعاء", "خميس", "جمعه", "سبت", "أحد"]
-            };
-            break;
-
-		 case "az":
-            return {
-                month_labels: ["Yanvar", "Fevral", "Mart", "Aprel", "May", "İyun", "İyul", "Avqust", "Sentyabr", "Oktyabr", "Noyabr", "Dekabr"],
-                dow_labels: ["B.e", "Ç.A", "Çərş", "C.A", "Cümə", "Şən", "Baz"]
-            };
-            break;
-			
-        case "cn":
-            return {
-                month_labels: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
-                dow_labels: ["星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期日"]
-            };
-            break;
-
-        case "cs":
-            return {
-                month_labels: ["Leden", "Únor", "Březen", "Duben", "Květen", "Červen", "Červenec", "Srpen", "Září", "Říjen", "Listopad", "Prosinec"],
-                dow_labels: ["Po", "Út", "St", "Čt", "Pá", "So", "Ne"]
-            };
-            break;
-
         case 'de':
             return {
                 month_labels: ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"],
                 dow_labels: ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"]
-            };
-            break;
+            };            
 
         case 'en':
             return {
                 month_labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
                 dow_labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
-            };
-            break;
+            };            
 
+        case 'ar':
+            return {
+                month_labels: ["يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو", "يوليو", "أغسطس", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"],
+                dow_labels: ["أثنين", "ثلاثاء", "اربعاء", "خميس", "جمعه", "سبت", "أحد"]
+            };
+            
         case 'es':
             return {
                 month_labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
                 dow_labels: ["Lu", "Ma", "Mi", "Ju", "Vi", "Sá", "Do"]
             };
-            break;
-
-        case 'fi':
-            return {
-                month_labels: ["Tammikuu", "Helmikuu", "Maaliskuu", "Huhtikuu", "Toukokuu", "Kesäkuu", "Heinäkuu", "Elokuu", "Syyskuu", "Lokakuu", "Marraskuu", "Joulukuu"],
-                dow_labels: ["Ma", "Ti", "Ke", "To", "Pe", "La", "Su"]
-            };
-            break;
 
         case 'fr':
             return {
                 month_labels: ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"],
                 dow_labels: ["Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim"]
             };
-            break;
-
-        case 'hu':
-            return {
-                month_labels: ["Január", "Február", "Március", "Április", "Május", "Június", "Július", "Augusztus", "Szeptember", "Október", "November", "December"],
-                dow_labels: ["Hé", "Ke", "Sze", "Cs", "Pé", "Szo", "Va"]
-            };
-            break;
-
-        case 'id':
-            return {
-                month_labels: ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"],
-                dow_labels: ["Senin", "Selasa", "Rabu", "Kamis", "Jum'at", "Sabtu", "Minggu"]
-            };
-            break;
 
         case 'it':
             return {
                 month_labels: ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"],
                 dow_labels: ["Lun", "Mar", "Mer", "Gio", "Ven", "Sab", "Dom"]
             };
-            break;
-
-        case 'jp':
-            return {
-                month_labels: ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"],
-                dow_labels: ["月", "火", "水", "木", "金", "土", "日"]
-            };
-            break;
 
         case 'nl':
             return {
                 month_labels: ["Januari", "Februari", "Maart", "April", "Mei", "Juni", "Juli", "Augustus", "September", "Oktober", "November", "December"],
                 dow_labels: ["Ma", "Di", "Wo", "Do", "Vr", "Za", "Zo"]
             };
-            break;
-
-        case 'no':
-            return {
-                month_labels: ["Januar", "Februar", "Mars", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Desember"],
-                dow_labels: ["Ma", "Ti", "On", "To", "Fr", "L\u00f8", "S\u00f8"]
-            };
-            break;
-
-        case 'pl':
-            return {
-                month_labels: ["Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień"],
-                dow_labels: ["pon.", "wt.", "śr.", "czw.", "pt.", "sob.", "niedz."]
-            };
-            break;
 
         case 'pt':
             return {
                 month_labels: ["Janeiro", "Fevereiro", "Marco", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"],
                 dow_labels: ["S", "T", "Q", "Q", "S", "S", "D"]
             };
-            break;
 
         case 'ru':
             return {
                 month_labels: ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"],
                 dow_labels: ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вск"]
             };
-            break;
 
         case 'se':
             return {
                 month_labels: ["Januari", "Februari", "Mars", "April", "Maj", "Juni", "Juli", "Augusti", "September", "Oktober", "November", "December"],
                 dow_labels: ["Mån", "Tis", "Ons", "Tor", "Fre", "Lör", "Sön"]
             };
-            break;
-
-        case 'sk':
-            return {
-                month_labels: ["Január", "Február", "Marec", "Apríl", "Máj", "Jún", "Júl", "August", "September", "Október", "November", "December"],
-                dow_labels: ["Po", "Ut", "St", "Št", "Pi", "So", "Ne"]
-            };
-            break;
 
         case 'tr':
             return {
                 month_labels: ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"],
                 dow_labels: ["Pts", "Salı", "Çar", "Per", "Cuma", "Cts", "Paz"]
             };
-            break;
-
-        case 'ua':
-            return {
-                month_labels: ["Січень", "Лютий", "Березень", "Квітень", "Травень", "Червень", "Липень", "Серпень", "Вересень", "Жовтень", "Листопад", "Грудень"],
-                dow_labels: ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Нд"]
-            };
-            break;
+            
     }
 
 };
