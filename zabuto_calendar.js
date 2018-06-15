@@ -446,6 +446,8 @@ $.fn.zabuto_calendar = function (options) {
                             $('#' + id).click(function () {
                                 $('#' + id + '_modal').modal();
                             });
+                        } else {
+                            $dowElement.append('<p>'+ value.body +'</p>');
                         }
                     }
                 });
