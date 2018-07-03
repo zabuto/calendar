@@ -41,6 +41,8 @@ $.fn.zabuto_calendar = function (options) {
         $calendarElement.data('legendList', opts.legend);
         $calendarElement.data('actionFunction', opts.action);
         $calendarElement.data('actionNavFunction', opts.action_nav);
+        $calendarElement.data('disabledDays', opts.disabled_days);
+        $calendarElement.data('disabledDates', opts.disabled_dates);
 
         drawCalendar();
 
@@ -84,6 +86,16 @@ $.fn.zabuto_calendar = function (options) {
         function drawLegend($calendarElement) {
             var $legendObj = $('<div class="legend" id="' + $calendarElement.attr('id') + '_legend"></div>');
             var legend = $calendarElement.data('legendList');
+
+            // Add in disabled legend if there are any days/dates
+            if ($calendarElement.data('disabledDays').length || $calendarElement.data('disabledDates').length) {
+                if(!legend.length) {
+                    legend = [];
+                }
+
+                legend.push({type: "block", label: "Disabled", classname: "dow-disabled"});
+            }
+
             if (typeof(legend) == 'object' && legend.length > 0) {
                 $(legend).each(function (index, item) {
                     if (typeof(item) == 'object') {
@@ -272,6 +284,19 @@ $.fn.zabuto_calendar = function (options) {
                     if (dow < firstDow || currDayOfMonth > lastDayinMonth) {
                         $dowRow.append('<td></td>');
                     } else {
+                        // Days are enabled by default
+                        var dayDisabled = false;
+
+                        // Check to see if the day is in the disabled days array
+                        if ($calendarElement.data('disabledDays').indexOf(dow) >= 0) {
+                            dayDisabled = true;
+                        }
+
+                        // Check to see if the date is in the disabled dates array
+                        if (!dayDisabled && $calendarElement.data('disabledDates').indexOf(dateAsString(year, month, currDayOfMonth)) >= 0) {
+                            dayDisabled = true;
+                        }
+
                         var dateId = $calendarElement.attr('id') + '_' + dateAsString(year, month, currDayOfMonth);
                         var dayId = dateId + '_day';
 
@@ -291,12 +316,16 @@ $.fn.zabuto_calendar = function (options) {
                         $dowElement.data('date', dateAsString(year, month, currDayOfMonth));
                         $dowElement.data('hasEvent', false);
 
-                        if (typeof($calendarElement.data('actionFunction')) === 'function') {
-                            $dowElement.addClass('dow-clickable');
-                            $dowElement.click(function () {
-                                $calendarElement.data('selectedDate', $(this).data('date'));
-                            });
-                            $dowElement.click($calendarElement.data('actionFunction'));
+                        if (!dayDisabled) {
+                            if (typeof($calendarElement.data('actionFunction')) === 'function') {
+                                $dowElement.addClass('dow-clickable');
+                                $dowElement.click(function () {
+                                    $calendarElement.data('selectedDate', $(this).data('date'));
+                                });
+                                $dowElement.click($calendarElement.data('actionFunction'));
+                            }
+                        } else {
+                            $dowElement.addClass('dow-disabled');
                         }
 
                         $dowRow.append($dowElement);
@@ -410,44 +439,49 @@ $.fn.zabuto_calendar = function (options) {
                     var $dowElement = $('#' + id);
                     var $dayElement = $('#' + id + '_day');
 
-                    $dowElement.data('hasEvent', true);
-
-                    if (typeof(value.title) !== 'undefined') {
-                        $dowElement.attr('title', value.title);
-                    }
-
-                    if (typeof(value.classname) === 'undefined') {
-                        $dowElement.addClass('event');
+                    if ($dowElement.hasClass('dow-disabled')) {
+                        $dowElement.data('hasEvent', false);
                     } else {
-                        $dowElement.addClass('event-styled');
-                        $dayElement.addClass(value.classname);
-                    }
+                        $dowElement.data('hasEvent', true);
 
-                    if (typeof(value.badge) !== 'undefined' && value.badge !== false) {
-                        var badgeClass = (value.badge === true) ? '' : ' badge-' + value.badge;
-                        var dayLabel = $dayElement.data('day');
-                        $dayElement.html('<span class="badge badge-event' + badgeClass + '">' + dayLabel + '</span>');
-                    }
-
-                    if (typeof(value.body) !== 'undefined') {
-                        var modalUse = false;
-                        if (type === 'json' && typeof(value.modal) !== 'undefined' && value.modal === true) {
-                            modalUse = true;
-                        } else if (type === 'ajax' && 'modal' in ajaxSettings && ajaxSettings.modal === true) {
-                            modalUse = true;
+                        if (typeof(value.title) !== 'undefined') {
+                            $dowElement.attr('title', value.title);
                         }
 
-                        if (modalUse === true) {
-                            $dowElement.addClass('event-clickable');
+                        if (typeof(value.classname) === 'undefined') {
+                            $dowElement.addClass('event');
+                        } else {
+                            $dowElement.addClass('event-styled');
+                            $dayElement.addClass(value.classname);
+                        }
 
-                            var $modalElement = createModal(id, value.title, value.body, value.footer);
-                            $('body').append($modalElement);
+                        if (typeof(value.badge) !== 'undefined' && value.badge !== false) {
+                            var badgeClass = (value.badge === true) ? '' : ' badge-' + value.badge;
+                            var dayLabel = $dayElement.data('day');
+                            $dayElement.html('<span class="badge badge-event' + badgeClass + '">' + dayLabel + '</span>');
+                        }
 
-                            $('#' + id).click(function () {
-                                $('#' + id + '_modal').modal();
-                            });
+                        if (typeof(value.body) !== 'undefined') {
+                            var modalUse = false;
+                            if (type === 'json' && typeof(value.modal) !== 'undefined' && value.modal === true) {
+                                modalUse = true;
+                            } else if (type === 'ajax' && 'modal' in ajaxSettings && ajaxSettings.modal === true) {
+                                modalUse = true;
+                            }
+
+                            if (modalUse === true) {
+                                $dowElement.addClass('event-clickable');
+
+                                var $modalElement = createModal(id, value.title, value.body, value.footer);
+                                $('body').append($modalElement);
+
+                                $('#' + id).click(function () {
+                                    $('#' + id + '_modal').modal();
+                                });
+                            }
                         }
                     }
+
                 });
             }
         }
@@ -569,7 +603,9 @@ $.fn.zabuto_calendar_defaults = function () {
         ajax: false,
         legend: false,
         action: false,
-        action_nav: false
+        action_nav: false,
+        disabled_days: [],
+        disabled_dates: []
     };
     return settings;
 };

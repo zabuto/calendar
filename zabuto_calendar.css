@@ -83,6 +83,12 @@ div.zabuto_calendar .table tr td.event div.day,
 div.zabuto_calendar ul.legend li.event {
     background-color: #fff0c3;
 }
+div.zabuto_calendar .table tr td.dow-disabled div.day,
+div.zabuto_calendar ul.legend li.dow-disabled {
+    background-color: #f0f0f0;
+    color: #a9a9a9;
+    cursor: not-allowed;
+}
 
 div.zabuto_calendar .table tr td.dow-clickable,
 div.zabuto_calendar .table tr td.event-clickable {

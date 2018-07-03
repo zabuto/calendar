@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Zabuto | Calendar | Disabled Days/Dates</title>
+    <meta name="robots" content="noindex, nofollow">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <!-- jQuery CDN -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+    <!-- Bootstrap CDN -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Example style -->
+    <link rel="stylesheet" type="text/css" href="//zabuto.com/assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <!-- Zabuto Calendar -->
+    <script src="../zabuto_calendar.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../zabuto_calendar.min.css">
+
+</head>
+<body>
+
+<!-- container -->
+<div class="container example">
+
+    <h1>
+        Calendar <span>Disabled Days/Dates</span>
+        <ul class="nav nav-pills pull-right">
+            <li><a class="pull-right" href="action.html">&laquo; Action</a></li>
+            <li><a class="pull-right" href="index.html">^ Example Index</a></li>
+        </ul>
+    </h1>
+
+    <hr>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <p>You can disabled specific days of the week, or specific dates, or a mixture of both.</p>
+
+            <table>
+                <tr>
+                    <th>disabled_days</th>
+                    <td class="type">array</td>
+                    <td>An numeric (0-6) array of days of the week that should be disabled</td>
+                </tr>
+                <tr>
+                    <th>disabled_dates</th>
+                    <td class="type">array</td>
+                    <td>An array of dates that should be disabled.</td>
+                </tr>
+            </table>
+        </div>
+    <hr>
+
+    <div class="row">
+        <div class="col-xs-5">
+            <div id="my-calendar"></div>
+
+            <script type="application/javascript">
+                $(document).ready(function () {
+                    $("#my-calendar").zabuto_calendar({
+                        disabled_days: [
+                            0, 6
+                        ],
+                        disabled_dates: [
+                            '2018-12-31',
+                            '2019-01-01'
+                        ]
+                    });
+                });
+            </script>
+
+        </div>
+        <div class="col-xs-6 col-xs-offset-1">
+
+<code>
+&lt;div id=&quot;my-calendar&quot;&gt;&lt;/div&gt;
+
+&lt;script type=&quot;application/javascript&quot;&gt;
+    $(document).ready(function () {
+        $(&quot;#my-calendar&quot;).zabuto_calendar({
+            <span>disabled_days: [0, 6],</span>
+            <span>disabled_dates: ['2018-12-31', '2019-01-01']</span>
+        });
+    });
+&lt;/script&gt;
+</code>
+
+        </div>
+    </div>
+</div>
+<!-- /container -->
+
+</body>
+</html>

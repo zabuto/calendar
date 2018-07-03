@@ -41,6 +41,8 @@ You can customize the calendar with several settings:
 * show_days 	(boolean) 	        Show the days-of-week header.
 * weekstartson 	(integer) 	        Start the week on Sunday (0) or Monday (1).
 * nav_icon 	    (object)  	        Override 'prev' and/or 'next' icon html
+* disabled_days (array)             Days of the days that should be disabled.
+* disabled_dates (array)            Dates that should be disabled.
 
 ## Date Events
 You are able to add date events by using fixed data or an AJAX request with JSON data.
