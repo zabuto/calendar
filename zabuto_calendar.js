@@ -599,6 +599,13 @@ $.fn.zabuto_calendar_language = function (lang) {
                 dow_labels: ["B.e", "Ç.A", "Çərş", "C.A", "Cümə", "Şən", "Baz"]
             };
             break;
+            
+        case 'ca':
+            return {
+                month_labels: ["Gener", "Febrer", "Març", "Abril", "Maig", "Juny", "Juliol", "Agost", "Setembre", "Octubre", "Novembre", "Desembre"],
+                dow_labels: ["Dl", "Dt", "Dc", "Dj", "Dv", "Ds", "Dg"]
+            };
+            break;            
 
         case "cn":
             return {
