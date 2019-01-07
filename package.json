@@ -44,7 +44,7 @@
     "grunt-contrib-jshint": "~0.10.0",
     "grunt-contrib-qunit": "^2.0.0",
     "grunt-contrib-uglify": "~0.5.0",
-    "grunt-contrib-watch": "^1.0.0",
+    "grunt-contrib-watch": "^1.1.0",
     "grunt-json": "^0.2.0"
   },
   "main": "Gruntfile.js"

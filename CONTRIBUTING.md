@@ -38,7 +38,7 @@ Assuming that you don't see any red, you're ready to go. Just be sure to run `gr
 ### Submitting pull requests
 
 1. If you are addressing a problem, please report it as an issue (see above).
-2. Create a new branch, please don't work in your `master` branch directly.
+2. Create a new branch, please don't work in your master branch directly.
 3. Fix stuff.
 4. Add or update tests along with your patch. Run `grunt` to see the tests fail. Also run the `test/*.html` file(s) in at least one actual browser.
 5. Describe the change in your pull request and reference the issue number, like this: "Fixed bug for navigation to next month. Fixes #319". If you're adding a new localization file, use something like: "Localization: added Dutch (nl) language".
