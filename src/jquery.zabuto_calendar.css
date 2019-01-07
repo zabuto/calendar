@@ -1,0 +1,84 @@
+/**
+ * Zabuto Calendar
+ */
+
+.zabuto-calendar {
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+.zabuto-calendar__navigation__item--prev,
+.zabuto-calendar__navigation__item--next {
+	text-align: center;
+	cursor: pointer;
+}
+
+.zabuto-calendar__navigation__item--header {
+	text-align: center;
+}
+
+.zabuto-calendar__navigation__item--header__title {
+	cursor: pointer;
+	font-weight: bolder;
+}
+
+.zabuto-calendar__days-of-week__item {
+	text-align: center;
+}
+
+.zabuto-calendar__day {
+	text-align: center;
+}
+
+.zabuto-calendar__day--today {
+	text-align: center;
+}
+
+/* Bootstrap overrides */
+.zabuto-calendar.table td, .zabuto-calendar.table th {
+	vertical-align: middle;
+}
+
+.zabuto-calendar.table thead td {
+	padding-top: 14px;
+	padding-bottom: 14px;
+	background-color: #fafafa;
+}
+
+.zabuto-calendar.table-bordered thead td {
+	border: 0;
+}
+
+.zabuto-calendar.table thead th {
+	background-color: #f0f0f0;
+}
+
+.zabuto-calendar.table > thead:first-child > tr:first-child > td {
+	border-top: 1px solid #ddd;
+}
+
+.zabuto-calendar.table > thead > tr > th {
+	border-bottom: 2px solid #ddd;
+}
+
+.zabuto-calendar.table > tbody td {
+	width: calc(100% / 7);
+}
+
+.zabuto-calendar.table > tbody > tr:last-child > td {
+	border-bottom: 1px solid #ddd;
+}
+
+.zabuto-calendar.table > tbody td .badge {
+	font-size: 100%;
+}
+
+/* Clickable */
+.zabuto-calendar.clickable > tbody td {
+	cursor: pointer;
+}
+
+.zabuto-calendar.table.clickable > tbody td:hover {
+	background-color: #f0f0f0;
+}

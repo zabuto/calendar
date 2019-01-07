@@ -1,0 +1,25 @@
+{
+  "months": {
+    "1": "Styczeń",
+    "2": "Luty",
+    "3": "Marzec",
+    "4": "Kwiecień",
+    "5": "Maj",
+    "6": "Czerwiec",
+    "7": "Lipiec",
+    "8": "Sierpień",
+    "9": "Wrzesień",
+    "10": "Październik",
+    "11": "Listopad",
+    "12": "Grudzień"
+  },
+  "days": {
+    "0": "niedz.",
+    "1": "pon.",
+    "2": "wt.",
+    "3": "śr.",
+    "4": "czw.",
+    "5": "pt.",
+    "6": "sob."
+  }
+}

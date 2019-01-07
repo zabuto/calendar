@@ -1,0 +1,25 @@
+{
+  "months": {
+    "1": "Ocak",
+    "2": "Şubat",
+    "3": "Mart",
+    "4": "Nisan",
+    "5": "Mayıs",
+    "6": "Haziran",
+    "7": "Temmuz",
+    "8": "Ağustos",
+    "9": "Eylül",
+    "10": "Ekim",
+    "11": "Kasım",
+    "12": "Aralık"
+  },
+  "days": {
+    "0": "Paz",
+    "1": "Pts",
+    "2": "Salı",
+    "3": "Çar",
+    "4": "Per",
+    "5": "Cuma",
+    "6": "Cts"
+  }
+}

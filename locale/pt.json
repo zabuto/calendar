@@ -1,0 +1,25 @@
+{
+  "months": {
+    "1": "Janeiro",
+    "2": "Fevereiro",
+    "3": "Marco",
+    "4": "Abril",
+    "5": "Maio",
+    "6": "Junho",
+    "7": "Julho",
+    "8": "Agosto",
+    "9": "Setembro",
+    "10": "Outubro",
+    "11": "Novembro",
+    "12": "Dezembro"
+  },
+  "days": {
+    "0": "D",
+    "1": "S",
+    "2": "T",
+    "3": "Q",
+    "4": "Q",
+    "5": "S",
+    "6": "S"
+  }
+}

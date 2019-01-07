@@ -1,0 +1,837 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="Zabuto Calendar Demo">
+	<link rel="icon" href="favicon.ico">
+
+	<!-- -----------------------------
+     https://github.com/zabuto
+    ------------------------------ -->
+
+	<title>Zabuto Calendar Demo</title>
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+		  integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+		  integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed" rel="stylesheet">
+
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+			integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+			integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+			crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+			integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+			crossorigin="anonymous"></script>
+	<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+
+	<!-- Zabuto Calendar -->
+	<link href="../dist/zabuto_calendar.min.css" rel="stylesheet">
+	<script src="../dist/zabuto_calendar.min.js"></script>
+
+	<!-- Demo -->
+	<link href="css/demo.css" rel="stylesheet">
+</head>
+<body>
+
+<nav id="navbar" class="navbar navbar-expand-md navbar-light bg-light fixed-top">
+	<a class="navbar-brand" href="#page-top">
+		<img src="apple-touch-icon.png" aria-hidden="true" class="d-inline-block align-top" alt="">
+		Zabuto Calendar <span>Demo</span>
+	</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#demo-navbar"
+			aria-controls="demo-navbar" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<div id="demo-navbar" class="collapse navbar-collapse">
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item">
+				<a class="nav-link" href="#basic">Basic Usage</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="#styling">Styling</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="#language">Languages</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="#navigation">Navigation</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="#data">Show data</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="#event">Events</a>
+			</li>
+		</ul>
+	</div>
+</nav>
+
+<a id="page-top" aria-hidden="true"></a>
+
+<section id="intro" class="clearfix">
+	<div class="container">
+		<p class="lead">The Zabuto Calendar jQuery Plugin lets you add a simple month calendar to your web page. It's
+			lightweight, efficient and easy to use.</p>
+
+		<div class="alert alert-warning" role="alert">
+			<strong>Watch out</strong> Zabuto Calendar v2 is still in development, <strong>please do not use in
+			production.</strong>
+			<br>
+			Please check out the master branch on <a href="https://github.com/zabuto/calendar"
+													 target="_blank">Github</a>.
+		</div>
+	</div>
+</section>
+
+<section id="basic" class="clearfix">
+	<div class="container">
+		<h2>Basic Usage</h2>
+
+		<h3>Initialize</h3>
+		<p>The calendar needs <a href="https://jquery.com/" target="_blank">jQuery</a> to function properly. After
+			including jQuery, the plugin can be used by requiring the stylesheet and javascript file. Then view the
+			calendar by defining a DOM-element and initializing the plugin.</p>
+
+		<div class="row">
+			<div class="col-md-6 col-sm-12">
+				<pre class="prettyprint">&lt;!-- include jQuery --&gt;
+&lt;script src="../lib/jquery/jquery.js"&gt;&lt;/script&gt;
+
+&lt;!-- require the plugin files --&gt;
+&lt;link href="../dist/zabuto_calendar.min.css" rel="stylesheet"&gt;
+&lt;script src="../dist/zabuto_calendar.min.js"&gt;&lt;/script&gt;
+
+&lt;!-- define an element --&gt;
+&lt;div id="demo-calendar-basic"&gt;&lt;/div&gt;
+
+&lt;!-- initialize the plugin --&gt;
+&lt;script&gt;
+$(document).ready(function () {
+  $("#demo-calendar-basic").zabuto_calendar();
+});
+&lt;/script&gt;</pre>
+			</div>
+			<div class="col-md-6 col-sm-12">
+				<div class="demo-calendar basic" id="demo-calendar-basic"></div>
+				<script>
+					$(document).ready(function () {
+						$("#demo-calendar-basic").zabuto_calendar();
+					});
+				</script>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section id="styling" class="clearfix">
+	<div class="container">
+		<h2>Styling</h2>
+
+		<h3>Bootstrap / CSS</h3>
+		<p>The calendar can be easily used with <a href="https://getbootstrap.com/" target="_blank">Bootstrap</a>. All
+			you need to do is require Bootstrap and add one or more Bootstrap CSS table classes to the calendar. The
+			plugin stylesheet contains some Bootstrap CSS overrides to make it pretty. Of course you can also add your
+			own custom CSS classes with this setting.</p>
+
+		<dl class="row">
+			<dt class="col-2">classname</dt>
+			<dd class="col-1 type">string</dd>
+			<dd class="col-9">Set the CSS table class name(s).</dd>
+		</dl>
+
+		<div class="row">
+			<div class="col-md-6 col-sm-12">
+				<pre class="prettyprint">&lt;!-- add some CSS classes --&gt;
+&lt;div id="demo-calendar-styled"&gt;&lt;/div&gt;
+
+&lt;script&gt;
+$(document).ready(function () {
+  $("#demo-calendar-styled").zabuto_calendar({
+    classname: 'table table-bordered lightgrey-weekends'
+  });
+});
+&lt;/script&gt;
+
+&lt;style&gt;
+table.lightgrey-weekends tbody td:nth-child(n+6) {
+  background-color: #f3f3f3;
+}
+&lt;/style&gt;</pre>
+
+				<small class="text-muted">All the examples below contain a Bootstrap table classname.</small>
+			</div>
+			<div class="col-md-6 col-sm-12">
+				<div class="demo-calendar" id="demo-calendar-styled"></div>
+				<script>
+					$(document).ready(function () {
+						$("#demo-calendar-styled").zabuto_calendar({
+							classname: 'table table-bordered lightgrey-weekends'
+						});
+					});
+				</script>
+			</div>
+		</div>
+
+		<h3>Appearance</h3>
+		<p>You can alter the appearance of the calendar in several ways. <a href="https://fontawesome.com"
+																			target="_blank">Font Awesome</a> was added
+			to this page to show an alternative navigation icon example.</p>
+
+		<dl class="row">
+			<dt class="col-2">header_format</dt>
+			<dd class="col-1 type">string</dd>
+			<dd class="col-9">Format for the header; use [month] and [year] as placeholders.</dd>
+			<dt class="col-2">week_starts</dt>
+			<dd class="col-1 type">string</dd>
+			<dd class="col-9">Start the week on Sunday ('sunday') or Monday ('monday').</dd>
+			<dt class="col-2">show_days</dt>
+			<dd class="col-1 type">boolean</dd>
+			<dd class="col-9">Show (true) or hide (false) the days of the week header.</dd>
+			<dt class="col-2">today_markup</dt>
+			<dd class="col-1 type">string</dd>
+			<dd class="col-9">Add html markup to today; use [day] as a placeholder.</dd>
+			<dt class="col-2">navigation_markup</dt>
+			<dd class="col-1 type">object</dd>
+			<dd class="col-9">Override the 'prev' and/or 'next' html markup.</dd>
+		</dl>
+
+		<div class="row">
+			<div class="col-md-6 col-sm-12">
+				<pre class="prettyprint">&lt;!-- alter the apppearance --&gt;
+&lt;div id="demo-calendar-apppearance"&gt;&lt;/div&gt;
+
+&lt;script&gt;
+$(document).ready(function () {
+  $("#demo-calendar-apppearance").zabuto_calendar({
+    header_format: '[year] // [month]',
+    week_starts: 'sunday',
+    show_days: true,
+    today_markup: '&lt;span class="badge badge-primary">[day]&lt;/span&gt;',
+    navigation_markup: {
+        prev: '&lt;i class="fas fa-chevron-circle-left">&lt;/i&gt;',
+        next: '&lt;i class="fas fa-chevron-circle-right">&lt;/i&gt;'
+      }
+  });
+});
+&lt;/script&gt;</pre>
+			</div>
+			<div class="col-md-6 col-sm-12">
+				<div class="demo-calendar" id="demo-calendar-apppearance"></div>
+				<script>
+					$(document).ready(function () {
+						$("#demo-calendar-apppearance").zabuto_calendar({
+							classname: 'table',
+							header_format: '[year] // [month]',
+							week_starts: 'sunday',
+							show_days: true,
+							today_markup: '<span class="badge badge-primary">[day]</span>',
+							navigation_markup: {
+								prev: '<i class="fas fa-chevron-circle-left"></i>',
+								next: '<i class="fas fa-chevron-circle-right"></i>'
+							}
+						});
+					});
+				</script>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section id="language" class="clearfix">
+	<div class="container">
+		<h2>Languages</h2>
+
+		<h3>Included languages</h3>
+		<p>You can customize the language of the calendar by using the available translations. Just use the locale code
+			for your language.</p>
+
+		<dl class="row">
+			<dt class="col-2">language</dt>
+			<dd class="col-1 type">string</dd>
+			<dd class="col-9">Set the desired language of the calendar.</dd>
+		</dl>
+
+		<div class="row">
+			<div class="col-md-6 col-sm-12">
+				<pre class="prettyprint">&lt;div id="demo-calendar-language"&gt;&lt;/div&gt;
+&lt;script&gt;
+$(document).ready(function () {
+  $("#demo-calendar-language").zabuto_calendar({
+    language: 'nl'
+  });
+});
+&lt;/script&gt;</pre>
+
+				<h5>Available languages:</h5>
+				<div class="row">
+					<div class="col-sm">
+						<dl class="row language">
+							<dt class="col-2">ar</dt>
+							<dd class="col-10">عربى (Arabic)</dd>
+							<dt class="col-2">az</dt>
+							<dd class="col-10">Azerbaijani</dd>
+							<dt class="col-2">cn</dt>
+							<dd class="col-10">Chinese</dd>
+							<dt class="col-2">cs</dt>
+							<dd class="col-10">Czech</dd>
+							<dt class="col-2">de</dt>
+							<dd class="col-10">Deutsch (German)</dd>
+							<dt class="col-2">en</dt>
+							<dd class="col-10">English <span class="text-muted">(default value)</span></dd>
+							<dt class="col-2">es</dt>
+							<dd class="col-10">Espanol (Spanish)</dd>
+							<dt class="col-2">fi</dt>
+							<dd class="col-10">Finnish</dd>
+							<dt class="col-2">fr</dt>
+							<dd class="col-10">Francais (French)</dd>
+							<dt class="col-2">he</dt>
+							<dd class="col-10">Hebrew</dd>
+							<dt class="col-2">hu</dt>
+							<dd class="col-10">Magyar (Hungarian)</dd>
+							<dt class="col-2">id</dt>
+							<dd class="col-10">Indonesian</dd>
+						</dl>
+					</div>
+					<div class="col-sm">
+						<dl class="row language">
+							<dt class="col-2">it</dt>
+							<dd class="col-10">Italiano (Italian)</dd>
+							<dt class="col-2">jp</dt>
+							<dd class="col-10">Japanese</dd>
+							<dt class="col-2">kr</dt>
+							<dd class="col-10">Korean</dd>
+							<dt class="col-2">nl</dt>
+							<dd class="col-10">Nederlands (Dutch)</dd>
+							<dt class="col-2">no</dt>
+							<dd class="col-10">Norwegian</dd>
+							<dt class="col-2">pl</dt>
+							<dd class="col-10">Polish</dd>
+							<dt class="col-2">pt</dt>
+							<dd class="col-10">Portugues (Portuguese)</dd>
+							<dt class="col-2">ru</dt>
+							<dd class="col-10">ру́сский язы́кR (Russian)</dd>
+							<dt class="col-2">se</dt>
+							<dd class="col-10">Svenska (Swedish)</dd>
+							<dt class="col-2">sk</dt>
+							<dd class="col-10">Slovak</dd>
+							<dt class="col-2">tr</dt>
+							<dd class="col-10">Türkçe (Turkish)</dd>
+							<dt class="col-2">ua</dt>
+							<dd class="col-10">Ukrainian</dd>
+						</dl>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6 col-sm-12">
+				<div class="demo-calendar" id="demo-calendar-language"></div>
+				<script>
+					$(document).ready(function () {
+						$("#demo-calendar-language").zabuto_calendar({classname: 'table', language: 'nl'});
+					});
+				</script>
+			</div>
+		</div>
+
+		<h3>Custom translation</h3>
+		<p>If the language you want is not available you can set it yourself during initialization. Provide a
+			translation object with labels for months (from 1 to 12) and days of the week (from 0 to 6). Sunday is 0,
+			Monday is 1, and so on.</p>
+
+		<dl class="row">
+			<dt class="col-2">translation</dt>
+			<dd class="col-1 type">object</dd>
+			<dd class="col-9">Set the custom translation.</dd>
+		</dl>
+
+		<div class="row">
+			<div class="col-md-6 col-sm-12">
+				<pre class="prettyprint">&lt;div id="demo-calendar-welsh"&gt;&lt;/div&gt;
+&lt;script&gt;
+$(document).ready(function () {
+  $("#demo-calendar-welsh").zabuto_calendar({
+    translation: {
+      "months" : {
+        "1":"Ionawr",
+        "2":"Chwefror",
+        "3":"Mawrth",
+        "4":"Ebrill",
+        "5":"Mai",
+        "6":"Mehefin",
+        "7":"Gorffennaf",
+        "8":"Awst",
+        "9":"Medi",
+        "10":"Hydref",
+        "11":"Tachwedd",
+        "12":"Rhagfyr"
+      },
+      "days" : {
+        "0":"Sul",
+        "1":"Llu",
+        "2":"Maw",
+        "3":"Mer",
+        "4":"Iau",
+        "5":"Gwe",
+        "6":"Sad"
+      }
+    }
+  });
+});
+&lt;/script&gt;</pre>
+			</div>
+			<div class="col-md-6 col-sm-12">
+				<div class="demo-calendar" id="demo-calendar-welsh"></div>
+				<script>
+					$(document).ready(function () {
+						$("#demo-calendar-welsh").zabuto_calendar({
+							classname: 'table',
+							translation: {
+								"months": {
+									"1": "Ionawr",
+									"2": "Chwefror",
+									"3": "Mawrth",
+									"4": "Ebrill",
+									"5": "Mai",
+									"6": "Mehefin",
+									"7": "Gorffennaf",
+									"8": "Awst",
+									"9": "Medi",
+									"10": "Hydref",
+									"11": "Tachwedd",
+									"12": "Rhagfyr"
+								},
+								"days": {
+									"0": "Sul",
+									"1": "Llu",
+									"2": "Maw",
+									"3": "Mer",
+									"4": "Iau",
+									"5": "Gwe",
+									"6": "Sad"
+								}
+							}
+						});
+					});
+				</script>
+			</div>
+		</div>
+
+	</div>
+</section>
+
+<section id="navigation" class="clearfix">
+	<div class="container">
+		<h2>Navigation</h2>
+
+		<h3>Initial month/year</h3>
+		<p>You can initialize the calendar in a different year and/or month than the current date.</p>
+
+		<dl class="row">
+			<dt class="col-2">year</dt>
+			<dd class="col-1 type">integer</dd>
+			<dd class="col-9">Set the full year (ie. 2017).</dd>
+			<dt class="col-2">month</dt>
+			<dd class="col-1 type">integer</dd>
+			<dd class="col-9">Set the month (January = 1, December = 12).</dd>
+		</dl>
+
+		<div class="row">
+			<div class="col-md-6 col-sm-12">
+				<pre class="prettyprint">&lt;!-- change to December 1999 --&gt;
+&lt;div id="demo-calendar-yearmonth"&gt;&lt;/div&gt;
+
+&lt;script&gt;
+$(document).ready(function () {
+  $("#demo-calendar-yearmonth").zabuto_calendar({
+    year: 1999,
+    month: 12
+  });
+});
+&lt;/script&gt;</pre>
+			</div>
+			<div class="col-md-6 col-sm-12">
+				<div class="demo-calendar" id="demo-calendar-yearmonth"></div>
+				<script>
+					$(document).ready(function () {
+						$("#demo-calendar-yearmonth").zabuto_calendar({
+							classname: 'table',
+							year: 1999,
+							month: 12
+						});
+					});
+				</script>
+			</div>
+		</div>
+
+		<h3>Disable navigation</h3>
+		<p>You can disable the navigation to previous and/or next months.</p>
+
+		<dl class="row">
+			<dt class="col-2">navigation_prev</dt>
+			<dd class="col-1 type">boolean</dd>
+			<dd class="col-9">Disable the navigation to previous months completely.</dd>
+			<dt class="col-2">navigation_next</dt>
+			<dd class="col-1 type">boolean</dd>
+			<dd class="col-9">Disable the navigation to next months completely.</dd>
+		</dl>
+
+		<div class="row">
+			<div class="col-md-6 col-sm-12">
+				<pre class="prettyprint">&lt;!-- disable navigation --&gt;
+&lt;div id="demo-calendar-disable-nav"&gt;&lt;/div&gt;
+
+&lt;script&gt;
+$(document).ready(function () {
+  $("#demo-calendar-disable-nav").zabuto_calendar({
+    navigation_prev: false,
+    navigation_next: false
+  });
+});
+&lt;/script&gt;</pre>
+			</div>
+			<div class="col-md-6 col-sm-12">
+				<div class="demo-calendar" id="demo-calendar-disable-nav"></div>
+				<script>
+					$(document).ready(function () {
+						$("#demo-calendar-disable-nav").zabuto_calendar({
+							classname: 'table',
+							navigation_prev: false,
+							navigation_next: false
+						});
+					});
+				</script>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section id="data" class="clearfix">
+	<div class="container">
+		<h2>Show data</h2>
+
+		<p>You can add data to the calendar to display events on certain dates. The data has to be provided as an array
+			of objects in the specified format.</p>
+
+		<div class="row">
+			<div class="col-md-6 col-sm-12">
+				<h5>Data format:</h5>
+				<dl class="row">
+					<dt class="col-2">date</dt>
+					<dd class="col-1 type">string</dd>
+					<dd class="col-9">Date of the event (required).</dd>
+					<dt class="col-2">classname</dt>
+					<dd class="col-1 type">string</dd>
+					<dd class="col-9">CSS class name(s) to be added to the day cell.</dd>
+					<dt class="col-2">markup</dt>
+					<dd class="col-1 type">string</dd>
+					<dd class="col-9">Add html markup to the event day; use [day] as a placeholder. This markup replaces
+						the today_markup if an event is set.
+					</dd>
+				</dl>
+
+				<p><em>You can add extra properties to the data as desired. This data is available in the emitted custom
+					calendar:day event.</em></p>
+			</div>
+			<div class="col-md-6 col-sm-12">
+		<pre class="prettyprint">[
+  {
+    "date": "1999-12-31",
+    "classname": "purple-event",
+    "markup": "&lt;span class=\"party\"&gt[day]&lt;/span&gt",
+  },
+  {
+    ...
+  }
+]</pre>
+			</div>
+		</div>
+
+		<h3>Fixed data</h3>
+		<p>You can add date events to the calendar by using fixed data.</p>
+
+		<dl class="row">
+			<dt class="col-2">events</dt>
+			<dd class="col-1 type">Array</dd>
+			<dd class="col-9">Set the fixed event data for the calendar.</dd>
+		</dl>
+
+		<div class="row">
+			<div class="col-md-6 col-sm-12">
+				<pre class="prettyprint">&lt;!-- show data --&gt;
+&lt;div id="demo-calendar-data"&gt;&lt;/div&gt;
+
+&lt;script&gt;
+$(document).ready(function () {
+  $("#demo-calendar-data").zabuto_calendar({
+    events: [
+      {
+        "date": "2019-01-02",
+        "classname": "event-black",
+        "markup": "&lt;div class=\"diamond\"&gt;&lt;div class=\"diamond-day\"&gt;[day]&lt;/div&gt;&lt;/div&gt;"
+      },
+      {
+        "date": "2019-01-05",
+        "classname": "event-colourful"
+      },
+      {
+        "date": "2019-01-10",
+        "markup": "&lt;div class=\"badge badge-pill badge-success\"&gt;[day]>&lt;/div&gt;"
+      }
+    ]
+  });
+});
+&lt;/script&gt;</pre>
+			</div>
+			<div class="col-md-6 col-sm-12">
+				<div class="demo-calendar" id="demo-calendar-data"></div>
+				<script>
+					$(document).ready(function () {
+						$("#demo-calendar-data").zabuto_calendar({
+							classname: 'table',
+							year: 2019,
+							month: 1,
+							navigation_prev: false,
+							navigation_next: false,
+							events: [
+								{
+									"date": "2019-01-02",
+									"classname": "event-black",
+									"markup": "<div class=\"diamond\"><div class=\"diamond-day\">[day]</div></div>"
+								},
+								{
+									"date": "2019-01-05",
+									"classname": "event-colourful"
+								},
+								{
+									"date": "2019-01-10",
+									"markup": "<div class=\"badge badge-pill badge-success\">[day]</div>"
+								}
+							]
+						});
+					});
+				</script>
+			</div>
+		</div>
+
+		<h3>Ajax data</h3>
+		<p>Use an Ajax request to dynamically retrieve data for the specific year/month. The data provided has to be
+			JSON in the specified format.</p>
+
+		<dl class="row">
+			<dt class="col-2">ajax</dt>
+			<dd class="col-2 type">string | object</dd>
+			<dd class="col-8">A string containing the URL to which the request is sent. Alternatively use a <a
+				href="http://api.jquery.com/jquery.ajax/#jQuery-ajax-settings" target="_blank">jQuery ajax settings</a>
+				object for more flexibility.
+			</dd>
+		</dl>
+
+		<div class="row">
+			<div class="col-md-6 col-sm-12">
+				<pre class="prettyprint">&lt;!-- get ajax data --&gt;
+&lt;div id="demo-calendar-ajax"&gt;&lt;/div&gt;
+
+&lt;script&gt;
+$(document).ready(function () {
+  $("#demo-calendar-ajax").zabuto_calendar({
+    ajax: 'get-data.php'
+  });
+});
+&lt;/script&gt;</pre>
+			</div>
+			<div class="col-md-6 col-sm-12">
+				<div class="demo-calendar" id="demo-calendar-ajax"></div>
+				<script>
+					$(document).ready(function () {
+						$("#demo-calendar-ajax").zabuto_calendar({
+							classname: 'table',
+							ajax: 'get-data.php'
+						});
+					});
+				</script>
+			</div>
+		</div>
+
+	</div>
+</section>
+
+<section id="event" class="clearfix">
+	<div class="container">
+		<h2>Events</h2>
+
+		<p>The calendar emits custom events when particular operations are performed. This provides the ability to
+			listen for these events and take action on them when they occur. The events can all be listened for by using
+			the <a href="http://api.jquery.com/on/" target="_blank">jQuery.on()</a> method. The example below shows how
+			the init event can be listened for:</p>
+		<pre class="prettyprint">$('#myCalendar').on('calendar:init', function (event) {
+    alert('Calendar init');
+});</pre>
+
+		<h5>Available events:</h5>
+		<dl class="row">
+			<dt class="col-3">calendar:data</dt>
+			<dd class="col-9">Data event - triggered when the calendar retrieved event data.</dd>
+			<dt class="col-3">calendar:data-fail</dt>
+			<dd class="col-9">Data error event - triggered when the ajax data retrieval failed.</dd>
+			<dt class="col-3">calendar:day</dt>
+			<dd class="col-9">Day event - triggered when a day is clicked.</dd>
+			<dt class="col-3">calendar:day-event</dt>
+			<dd class="col-9">Day data event - triggered when event data for the day is available.</dd>
+			<dt class="col-3">calendar:destroy</dt>
+			<dd class="col-9">Destroy event - triggered when the calendar has been destroyed.</dd>
+			<dt class="col-3">calendar:goto</dt>
+			<dd class="col-9">Go-to event - triggered when the calendar's year/month is updated.</dd>
+			<dt class="col-3">calendar:init</dt>
+			<dd class="col-9">Initialisation complete event.</dd>
+			<dt class="col-3">calendar:navigate</dt>
+			<dd class="col-9">Navigate event - triggered by the previous/next navigation click.</dd>
+			<dt class="col-3">calendar:navigate-init</dt>
+			<dd class="col-9">Navigate to initial event - triggered by double-clicking on the month/year header to go
+				to the initial year/month.
+			</dd>
+			<dt class="col-3">calendar:preRender</dt>
+			<dd class="col-9">Pre-render event - triggered as the calendar is about to be rendered.</dd>
+			<dt class="col-3">calendar:render</dt>
+			<dd class="col-9">Render event - triggered once the calendar has completely rendered.</dd>
+		</dl>
+
+		<p>The Event object contains data specific to the calendar. The following properties are available for the
+			calendar:goto, calendar:navigate, calendar:navigate-init, calendar:preRender and calendar:render
+			events:</p>
+		<dl class="row">
+			<dt class="col-1">year</dt>
+			<dd class="col-1 type">int</dd>
+			<dd class="col-10">The year navigated to.</dd>
+			<dt class="col-1">month</dt>
+			<dd class="col-1 type">int</dd>
+			<dd class="col-10">The month navigated to.</dd>
+		</dl>
+
+		<p>The calendar:day Event contains the following properties:</p>
+		<dl class="row">
+			<dt class="col-1">element</dt>
+			<dd class="col-1 type">object</dd>
+			<dd class="col-10">The day cell as a jQuery object.</dd>
+			<dt class="col-1">date</dt>
+			<dd class="col-1 type">object</dd>
+			<dd class="col-10">JavaScript Date object.</dd>
+			<dt class="col-1">value</dt>
+			<dd class="col-1 type">string</dd>
+			<dd class="col-10">Formatted date string.</dd>
+			<dt class="col-1">today</dt>
+			<dd class="col-1 type">bool</dd>
+			<dd class="col-10">Is the day the current day?</dd>
+			<dt class="col-1">hasEvent</dt>
+			<dd class="col-1 type">bool</dd>
+			<dd class="col-10">Does the specific day have events?</dd>
+			<dt class="col-1">eventdata</dt>
+			<dd class="col-1 type">object</dd>
+			<dd class="col-10">Event data for the specific day.</dd>
+		</dl>
+
+		<div class="row">
+			<div class="col-md-6 col-sm-12">
+				<pre class="prettyprint">&lt;!-- events --&gt;
+&lt;div id="demo-calendar-event"&gt;&lt;/div&gt;
+&lt;div id="demo-calendar-event-log"&gt;&lt;/div&gt;
+
+&lt;script&gt;
+var $el = $('#demo-calendar-event');
+$(document).ready(function () {
+  $el.zabuto_calendar({
+    classname: 'table clickable'
+  });
+});
+
+&lt;!-- listeners --&gt;
+$el.on('calendar:init', function () {
+  writeToEventLog('calendar:init');
+});
+
+$el.on('calendar:goto', function (e) {
+  writeToEventLog('calendar:goto' + ' year=' + e.year + ' month=' + e.month);
+});
+
+$el.on('calendar:day', function (e) {
+  var now = new Date();
+  if (e.today) {
+    $(e.element).css('color', 'blue');
+  } else if (e.date.getTime() < now.getTime()) {
+    $(e.element).css('color', 'red');
+  } else {
+    $(e.element).css('color', 'green');
+  }
+  writeToEventLog('calendar:day' + ' date=' + e.date.toDateString() + ' value=' + e.value + ' today=' + e.today);
+});
+
+function writeToEventLog(message) { /* ... */ }
+&lt;/script&gt;</pre>
+			</div>
+			<div class="col-md-6 col-sm-12">
+				<div class="demo-calendar" id="demo-calendar-event"></div>
+				<div class="console-log" id="demo-calendar-event-log">
+					<p>&#9658; Event Log</p>
+				</div>
+				<script>
+					var $el = $('#demo-calendar-event');
+					$(document).ready(function () {
+						$el.zabuto_calendar({
+							classname: 'table clickable'
+						});
+					});
+
+					$el.on('calendar:init', function () {
+						writeToEventLog('calendar:init');
+					});
+
+					$el.on('calendar:goto', function (e) {
+						writeToEventLog('calendar:goto' + ' year=' + e.year + ' month=' + e.month);
+					});
+
+					$el.on('calendar:day', function (e) {
+						var now = new Date();
+						if (e.today) {
+							$(e.element).css('color', 'blue');
+						} else if (e.date.getTime() < now.getTime()) {
+							$(e.element).css('color', 'red');
+						} else {
+							$(e.element).css('color', 'green');
+						}
+						writeToEventLog('calendar:day' + ' date=' + e.date.toDateString() + ' value=' + e.value + ' today=' + e.today);
+					});
+
+					function writeToEventLog(message) {
+						var $log = $('#demo-calendar-event-log');
+						$log.append($('<p></p>').text(message));
+						$log.scrollTop($log.height());
+					}
+				</script>
+			</div>
+		</div>
+	</div>
+</section>
+
+<footer class="bg-light">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 col-sm-12">
+				Zabuto Calendar is licensed under the MIT License.
+				<ul class="list-inline pull-right">
+					<li>
+						<a href="https://github.com/zabuto/calendar" target="_blank">github.com/zabuto/calendar</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</footer>
+
+<a class="scrollup hidden-print" href="#page-top">
+	<i class="fas fa-chevron-up"></i>
+</a>
+
+</body>
+</html>

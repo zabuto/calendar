@@ -1,0 +1,37 @@
+{
+  "name": "zabuto_calendar",
+  "title": "Zabuto Calendar",
+  "description": "jQuery plugin to add a simple month calendar to your page.",
+  "version": "2.0.0",
+  "homepage": "https://github.com/zabuto/calendar",
+  "author": {
+    "name": "Anke Heijnen",
+    "email": "anke@zabuto.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/zabuto/calendar.git"
+  },
+  "bugs": "https://github.com/zabuto/calendar/issues",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/zabuto/calendar/blob/master/LICENSE-MIT"
+    }
+  ],
+  "dependencies": {
+    "jquery": ">=3.2.1"
+  },
+  "keywords": [
+    "calendar",
+    "agenda",
+    "date",
+    "monthly",
+    "events",
+    "bootstrap",
+    "html5",
+    "responsive",
+    "ajax",
+    "json"
+  ]
+}

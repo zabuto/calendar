@@ -1,0 +1,25 @@
+{
+  "months": {
+    "1": "Január",
+    "2": "Február",
+    "3": "Marec",
+    "4": "Apríl",
+    "5": "Máj",
+    "6": "Jún",
+    "7": "Júl",
+    "8": "August",
+    "9": "September",
+    "10": "Október",
+    "11": "November",
+    "12": "December"
+  },
+  "days": {
+    "0": "Ne",
+    "1": "Po",
+    "2": "Ut",
+    "3": "St",
+    "4": "Št",
+    "5": "Pi",
+    "6": "So"
+  }
+}
