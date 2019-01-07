@@ -25,7 +25,7 @@ $(document).ready(function () {
 </script>
 ```
 ## Examples
-Examples for the use of the calendar are included in the sources. You can also check them out in the demo: http://zabuto.com/dev/calendar/demo/.
+Examples for the use of the calendar are included in the sources. You can also check them out in the demo: https://www.zabuto.com/dev/calendar/demo/.
 
 ## Issues and contributing
 Please review the guidelines for [contributing](CONTRIBUTING.md) for more information.
