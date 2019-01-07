@@ -599,13 +599,13 @@ $.fn.zabuto_calendar_language = function (lang) {
                 dow_labels: ["B.e", "Ç.A", "Çərş", "C.A", "Cümə", "Şən", "Baz"]
             };
             break;
-            
+
         case 'ca':
             return {
                 month_labels: ["Gener", "Febrer", "Març", "Abril", "Maig", "Juny", "Juliol", "Agost", "Setembre", "Octubre", "Novembre", "Desembre"],
                 dow_labels: ["Dl", "Dt", "Dc", "Dj", "Dv", "Ds", "Dg"]
             };
-            break;            
+            break;
 
         case "cn":
             return {
@@ -725,7 +725,7 @@ $.fn.zabuto_calendar_language = function (lang) {
                 dow_labels: ["S", "T", "Q", "Q", "S", "S", "D"]
             };
             break;
-		
+
         case 'ru':
             return {
                 month_labels: ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"],
@@ -746,8 +746,8 @@ $.fn.zabuto_calendar_language = function (lang) {
                 dow_labels: ["Po", "Ut", "St", "Št", "Pi", "So", "Ne"]
             };
             break;
-		
-		case 'sr':
+
+        case 'sr':
             return {
                 month_labels: ["Јануар", "Фебруар", "Март", "Април", "Мај", "Јун", "Јул", "Август", "Септембар", "Октобар", "Новембар", "Децембар"],
                 dow_labels: ["Пон", "Уто", "Сре", "Чет", "Пет", "Суб", "Нед"]
