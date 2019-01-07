@@ -31,7 +31,7 @@ Use this code to initialize the calendar:
 ## Settings
 You can customize the calendar with several settings:
 
-* language      (string)            Set the desired language of the calendar (ar, az, cn, cs, de, en, es, fi, fr, he, hu, id, it, jp, kr, nl, no, pl, pt, ru, se, sk, tr, ua).
+* language      (string)            Set the desired language of the calendar (ar, az, cn, cs, de, en, es, fi, fr, he, hu, id, it, jp, kr, nl, no, pl, pt, ru, se, sk, sr, tr, ua).
 * year 	        (integer) 	        Initialize the calendar in a different year than the current year.
 * month 	    (integer)	        Initialize the calendar in a different month than the current month (January=1, December=12).
 * show_previous (boolean|integer) 	Disable the navigation to previous months completely or only allow a maximum number of months.
@@ -105,7 +105,7 @@ You can also check them out in the demo: [http://zabuto.com/dev/calendar/example
 
 
 ## License
-Copyright (c) 2013-2017 Anke Heijnen
+Copyright (c) 2013-2018 Anke Heijnen
 
 Permission is hereby granted, free of charge, to any person
 obtaining a copy of this software and associated documentation
