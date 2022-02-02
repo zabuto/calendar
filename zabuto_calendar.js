@@ -41,6 +41,7 @@ $.fn.zabuto_calendar = function (options) {
         $calendarElement.data('legendList', opts.legend);
         $calendarElement.data('actionFunction', opts.action);
         $calendarElement.data('actionNavFunction', opts.action_nav);
+        $calendarElement.data('onDrawEventsFunction', opts.on_draw_events);
 
         drawCalendar();
 
@@ -450,6 +451,9 @@ $.fn.zabuto_calendar = function (options) {
                     }
                 });
             }
+            if (typeof($calendarElement.data('onDrawEventsFunction')) === 'function') {
+                $calendarElement.data('onDrawEventsFunction')(events);
+            }
         }
 
         /* ----- Helper functions ----- */
@@ -549,6 +553,7 @@ $.fn.zabuto_calendar = function (options) {
  *   legend:            object array, [{type: string, label: string, classname: string}]
  *   action:            function
  *   action_nav:        function
+ *   on_draw_events:    function
  */
 $.fn.zabuto_calendar_defaults = function () {
     var now = new Date();
@@ -569,7 +574,8 @@ $.fn.zabuto_calendar_defaults = function () {
         ajax: false,
         legend: false,
         action: false,
-        action_nav: false
+        action_nav: false,
+        on_draw_events: false
     };
     return settings;
 };
