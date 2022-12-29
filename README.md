@@ -1,6 +1,12 @@
 Zabuto Calendar
 =======
 
+
+### DEPRECATED
+This version of the calendar is no longer maintained.
+
+#
+
 This library is a jQuery plugin for Bootstrap that lets you add a month calendar to your web page.
 
 You can customize the display of the calendar and view it in several languages.
@@ -101,7 +107,6 @@ To retrieve information on the navigation action you need to access the element 
 
 ## Examples
 Examples for the use of the calendar are includes in the sources.
-You can also check them out in the demo: [http://zabuto.com/dev/calendar/examples/](http://zabuto.com/dev/calendar/examples/)
 
 
 ## License
