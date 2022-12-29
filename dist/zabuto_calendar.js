@@ -1,6 +1,6 @@
-/*! Zabuto Calendar - v2.0.0 - 2019-01-07
+/*! Zabuto Calendar - v2.1.0 - 2022-12-29
 * https://github.com/zabuto/calendar
-* Copyright (c) 2019 Anke Heijnen; Licensed MIT */
+* Copyright (c) 2022 Anke Heijnen; Licensed MIT */
 
 ;(function ($) {
 
@@ -95,7 +95,7 @@
 		 * Initialize
 		 */
 		init: function () {
-			var event = $.Event('calendar:init');
+			var event = $.Event('zabuto:calendar:init');
 			event.settings = this.settings;
 
 			var element = $(this.element);
@@ -114,7 +114,21 @@
 			element.removeData('month');
 			element.removeData('event-data');
 			element.empty();
-			element.trigger('calendar:destroy');
+			element.trigger('zabuto:calendar:destroy');
+		},
+
+		/**
+		 * Reload
+		 */
+		reload: function () {
+			var element = $(this.element);
+
+			var event = $.Event('zabuto:calendar:reload');
+			event.year = element.data('year');
+			event.month = element.data('month');
+			element.trigger(event);
+
+			this.data();
 		},
 
 		/**
@@ -125,7 +139,7 @@
 				return;
 			}
 
-			var event = $.Event('calendar:goto');
+			var event = $.Event('zabuto:calendar:goto');
 			event.year = year;
 			event.month = month;
 
@@ -150,7 +164,7 @@
 			} else if (handle.type === 'fixed') {
 				var data = self._eventsToDays(handle.data);
 
-				var event = $.Event('calendar:data');
+				var event = $.Event('zabuto:calendar:data');
 				event.type = 'fixed';
 				event.eventlist = handle.data;
 				event.eventdata = data;
@@ -168,7 +182,7 @@
 					.done(function (response) {
 						var data = self._eventsToDays(response);
 
-						var event = $.Event('calendar:data');
+						var event = $.Event('zabuto:calendar:data');
 						event.type = 'ajax';
 						event.eventlist = response;
 						event.eventdata = data;
@@ -179,7 +193,7 @@
 						self.render();
 					})
 					.fail(function (jqXHR, textStatus, errorThrown) {
-						var event = $.Event('calendar:data-fail');
+						var event = $.Event('zabuto:calendar:data-fail');
 						event.text = textStatus;
 						event.error = errorThrown;
 
@@ -199,7 +213,7 @@
 			var year = element.data('year');
 			var month = element.data('month');
 
-			var preEvent = $.Event('calendar:preRender');
+			var preEvent = $.Event('zabuto:calendar:preRender');
 			preEvent.year = year;
 			preEvent.month = month;
 			element.trigger(preEvent);
@@ -209,7 +223,7 @@
 				element.append(this._renderTable(year, month));
 			}
 
-			var postEvent = $.Event('calendar:render');
+			var postEvent = $.Event('zabuto:calendar:render');
 			postEvent.year = year;
 			postEvent.month = month;
 			element.trigger(postEvent);
@@ -269,13 +283,13 @@
 			title.addClass('zabuto-calendar__navigation__item--header__title');
 
 			if (null !== toPrev || null !== toNext) {
-				title.on('calendar:navigate-init', function (event) {
+				title.on('zabuto:calendar:navigate-init', function (event) {
 					var to = $(this).data('to');
 					event.year = to.year;
 					event.month = to.month;
 					self.goto(to.year, to.month);
 				}).on('dblclick', function () {
-					$(this).trigger('calendar:navigate-init');
+					$(this).trigger('zabuto:calendar:navigate-init');
 				});
 			}
 
@@ -312,13 +326,13 @@
 					item.html(type);
 				}
 
-				item.on('calendar:navigate', function (event) {
+				item.on('zabuto:calendar:navigate', function (event) {
 					var to = $(this).data('to');
 					event.year = to.year;
 					event.month = to.month;
 					self.goto(to.year, to.month);
 				}).on('click', function () {
-					$(this).trigger('calendar:navigate');
+					$(this).trigger('zabuto:calendar:navigate');
 				});
 			}
 
@@ -460,7 +474,7 @@
 				cell.data('hasEvent', 0);
 			}
 
-			cell.on('calendar:day', function (event) {
+			cell.on('zabuto:calendar:day', function (event) {
 				event.element = $(this);
 				event.date = new Date($(this).data('year'), ($(this).data('month') - 1), $(this).data('day'));
 				event.value = $(this).data('date');
@@ -468,7 +482,7 @@
 				event.hasEvent = !!($(this).data('hasEvent'));
 				event.eventdata = eventdata;
 			}).on('click', function () {
-				$(this).trigger('calendar:day');
+				$(this).trigger('zabuto:calendar:day');
 			});
 
 			return cell;
@@ -681,7 +695,7 @@
 
 			var dayData = eventData[date];
 
-			var event = $.Event('calendar:day-event');
+			var event = $.Event('zabuto:calendar:day-event');
 			event.value = date;
 			event.eventdata = dayData;
 			element.trigger(event);

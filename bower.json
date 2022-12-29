@@ -1,7 +1,7 @@
 {
   "name": "zabuto_calendar",
   "description": "jQuery plugin to add a simple month calendar to your page.",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "homepage": "https://github.com/zabuto/calendar",
   "authors": [
     "Anke Heijnen <anke@zabuto.com>"

@@ -133,30 +133,38 @@
 	});
 
 	QUnit.test('custom events', function (assert) {
-		assert.expect(6);
+		assert.expect(8);
 
 		var $div = $('<div></div>');
 		$div.data('test-passes', 0);
 
-		$div.on('calendar:init', function () {
-			assert.ok(true, "calendar:init event was triggered");
+		$div.on('zabuto:calendar:init', function () {
+			assert.ok(true, "zabuto:calendar:init event was triggered");
 		});
 
-		$div.on('calendar:goto', function () {
+		$div.on('zabuto:calendar:goto', function () {
 			$div.data('test-passes', ($div.data('test-passes') + 1));
-			assert.ok(true, "calendar:goto event was triggered (#" + $div.data('test-passes') + ")");
+			assert.ok(true, "zabuto:calendar:goto event was triggered (#" + $div.data('test-passes') + ")");
 		});
 
-		$div.on('calendar:render', function () {
-			assert.ok(true, "calendar:render event was triggered (#" + $div.data('test-passes') + ")");
+		$div.on('zabuto:calendar:reload', function () {
+			$div.data('test-passes', ($div.data('test-passes') + 1));
+			assert.ok(true, "zabuto:calendar:reload event was triggered (#" + $div.data('test-passes') + ")");
 		});
 
-		$div.on('calendar:destroy', function () {
-			assert.ok(true, "calendar:destroy event was triggered");
+		$div.on('zabuto:calendar:render', function () {
+			$div.data('test-passes', ($div.data('test-passes') + 1));
+			assert.ok(true, "zabuto:calendar:render event was triggered (#" + $div.data('test-passes') + ")");
+		});
+
+		$div.on('zabuto:calendar:destroy', function () {
+			$div.data('test-passes', ($div.data('test-passes') + 1));
+			assert.ok(true, "zabuto:calendar:destroy event was triggered");
 		});
 
 		$div.zabuto_calendar();
 		$div.zabuto_calendar('goto', 2016, 12);
+		$div.zabuto_calendar('reload');
 		$div.zabuto_calendar('destroy');
 	});
 
@@ -175,16 +183,16 @@
 			assert.ok(true, "click event was triggered");
 		});
 
-		$cell.on('calendar:day', function () {
-			assert.ok(true, "calendar:day event was triggered");
+		$cell.on('zabuto:calendar:day', function () {
+			assert.ok(true, "zabuto:calendar:day event was triggered");
 		});
 
 		var events = $._data($cell.get(0), "events");
 		$.each(events, function (e) {
 			if (e === 'click') {
 				assert.ok(true, "click event is available");
-			} else if (e === 'calendar:day') {
-				assert.ok(true, "calendar:day event is available");
+			} else if (e === 'zabuto:calendar:day') {
+				assert.ok(true, "zabuto:calendar:day event is available");
 			}
 		});
 

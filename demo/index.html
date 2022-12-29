@@ -12,19 +12,15 @@
 
 	<title>Zabuto Calendar Demo</title>
 
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-		  integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
-		  integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-	<link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+		  integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+		  integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
 
-	<script src="https://code.jquery.com/jquery-3.3.1.min.js"
-			integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-			integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-			crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
-			integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+	<script src="https://code.jquery.com/jquery-3.6.3.min.js"
+			integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+			integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
 			crossorigin="anonymous"></script>
 	<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
 
@@ -76,14 +72,7 @@
 	<div class="container">
 		<p class="lead">The Zabuto Calendar jQuery Plugin lets you add a simple month calendar to your web page. It's
 			lightweight, efficient and easy to use.</p>
-
-		<div class="alert alert-warning" role="alert">
-			<strong>Watch out</strong> Zabuto Calendar v2 is still in development, <strong>please do not use in
-			production.</strong>
-			<br>
-			Please check out the v1 branch on <a href="https://github.com/zabuto/calendar"
-													 target="_blank">Github</a>.
-		</div>
+		<p>Version: v2.1.0</p>
 	</div>
 </section>
 
@@ -210,7 +199,7 @@ $(document).ready(function () {
     header_format: '[year] // [month]',
     week_starts: 'sunday',
     show_days: true,
-    today_markup: '&lt;span class="badge badge-primary">[day]&lt;/span&gt;',
+    today_markup: '&lt;span class="badge bg-primary">[day]&lt;/span&gt;',
     navigation_markup: {
         prev: '&lt;i class="fas fa-chevron-circle-left">&lt;/i&gt;',
         next: '&lt;i class="fas fa-chevron-circle-right">&lt;/i&gt;'
@@ -228,7 +217,7 @@ $(document).ready(function () {
 							header_format: '[year] // [month]',
 							week_starts: 'sunday',
 							show_days: true,
-							today_markup: '<span class="badge badge-primary">[day]</span>',
+							today_markup: '<span class="badge bg-primary">[day]</span>',
 							navigation_markup: {
 								prev: '<i class="fas fa-chevron-circle-left"></i>',
 								next: '<i class="fas fa-chevron-circle-right"></i>'
@@ -537,7 +526,7 @@ $(document).ready(function () {
 				</dl>
 
 				<p><em>You can add extra properties to the data as desired. This data is available in the emitted custom
-					calendar:day event.</em></p>
+					zabuto:calendar:day event.</em></p>
 			</div>
 			<div class="col-md-6 col-sm-12">
 		<pre class="prettyprint">[
@@ -582,7 +571,7 @@ $(document).ready(function () {
       },
       {
         "date": "2019-01-10",
-        "markup": "&lt;div class=\"badge badge-pill badge-success\"&gt;[day]>&lt;/div&gt;"
+        "markup": "&lt;div class=\"badge rounded-pill bg-success\"&gt;[day]>&lt;/div&gt;"
       }
     ]
   });
@@ -611,7 +600,7 @@ $(document).ready(function () {
 								},
 								{
 									"date": "2019-01-10",
-									"markup": "<div class=\"badge badge-pill badge-success\">[day]</div>"
+									"markup": "<div class=\"badge rounded-pill badge-pill bg-success\">[day]</div>"
 								}
 							]
 						});
@@ -641,7 +630,7 @@ $(document).ready(function () {
 &lt;script&gt;
 $(document).ready(function () {
   $("#demo-calendar-ajax").zabuto_calendar({
-    ajax: 'get-data.php'
+    ajax: 'example_data.php'
   });
 });
 &lt;/script&gt;</pre>
@@ -652,7 +641,7 @@ $(document).ready(function () {
 					$(document).ready(function () {
 						$("#demo-calendar-ajax").zabuto_calendar({
 							classname: 'table',
-							ajax: 'get-data.php'
+							ajax: 'example_data.php'
 						});
 					});
 				</script>
@@ -670,41 +659,42 @@ $(document).ready(function () {
 			listen for these events and take action on them when they occur. The events can all be listened for by using
 			the <a href="http://api.jquery.com/on/" target="_blank">jQuery.on()</a> method. The example below shows how
 			the init event can be listened for:</p>
-		<pre class="prettyprint">$('#myCalendar').on('calendar:init', function (event) {
+		<pre class="prettyprint">$('#myCalendar').on('zabuto:calendar:init', function (event) {
     alert('Calendar init');
 });</pre>
 
 		<h5>Available events:</h5>
 		<dl class="row">
-			<dt class="col-3">calendar:data</dt>
+			<dt class="col-3">zabuto:calendar:data</dt>
 			<dd class="col-9">Data event - triggered when the calendar retrieved event data.</dd>
-			<dt class="col-3">calendar:data-fail</dt>
+			<dt class="col-3">zabuto:calendar:data-fail</dt>
 			<dd class="col-9">Data error event - triggered when the ajax data retrieval failed.</dd>
-			<dt class="col-3">calendar:day</dt>
+			<dt class="col-3">zabuto:calendar:day</dt>
 			<dd class="col-9">Day event - triggered when a day is clicked.</dd>
-			<dt class="col-3">calendar:day-event</dt>
+			<dt class="col-3">zabuto:calendar:day-event</dt>
 			<dd class="col-9">Day data event - triggered when event data for the day is available.</dd>
-			<dt class="col-3">calendar:destroy</dt>
+			<dt class="col-3">zabuto:calendar:destroy</dt>
 			<dd class="col-9">Destroy event - triggered when the calendar has been destroyed.</dd>
-			<dt class="col-3">calendar:goto</dt>
+			<dt class="col-3">zabuto:calendar:goto</dt>
 			<dd class="col-9">Go-to event - triggered when the calendar's year/month is updated.</dd>
-			<dt class="col-3">calendar:init</dt>
+			<dt class="col-3">zabuto:calendar:init</dt>
 			<dd class="col-9">Initialisation complete event.</dd>
-			<dt class="col-3">calendar:navigate</dt>
+			<dt class="col-3">zabuto:calendar:navigate</dt>
 			<dd class="col-9">Navigate event - triggered by the previous/next navigation click.</dd>
-			<dt class="col-3">calendar:navigate-init</dt>
+			<dt class="col-3">zabuto:calendar:navigate-init</dt>
 			<dd class="col-9">Navigate to initial event - triggered by double-clicking on the month/year header to go
 				to the initial year/month.
 			</dd>
-			<dt class="col-3">calendar:preRender</dt>
+			<dt class="col-3">zabuto:calendar:preRender</dt>
 			<dd class="col-9">Pre-render event - triggered as the calendar is about to be rendered.</dd>
-			<dt class="col-3">calendar:render</dt>
+			<dt class="col-3">zabuto:calendar:reload</dt>
+			<dd class="col-9">Reload event - triggered when the calendar's current year/month view is reloaded.</dd>
+			<dt class="col-3">zabuto:calendar:render</dt>
 			<dd class="col-9">Render event - triggered once the calendar has completely rendered.</dd>
 		</dl>
 
 		<p>The Event object contains data specific to the calendar. The following properties are available for the
-			calendar:goto, calendar:navigate, calendar:navigate-init, calendar:preRender and calendar:render
-			events:</p>
+			goto, navigate, navigate-init, reload, preRender and render events:</p>
 		<dl class="row">
 			<dt class="col-1">year</dt>
 			<dd class="col-1 type">int</dd>
@@ -714,7 +704,7 @@ $(document).ready(function () {
 			<dd class="col-10">The month navigated to.</dd>
 		</dl>
 
-		<p>The calendar:day Event contains the following properties:</p>
+		<p>The zabuto:calendar:day Event contains the following properties:</p>
 		<dl class="row">
 			<dt class="col-1">element</dt>
 			<dd class="col-1 type">object</dd>
@@ -751,15 +741,15 @@ $(document).ready(function () {
 });
 
 &lt;!-- listeners --&gt;
-$el.on('calendar:init', function () {
-  writeToEventLog('calendar:init');
+$el.on('zabuto:calendar:init', function () {
+  writeToEventLog('zabuto:calendar:init');
 });
 
-$el.on('calendar:goto', function (e) {
-  writeToEventLog('calendar:goto' + ' year=' + e.year + ' month=' + e.month);
+$el.on('zabuto:calendar:goto', function (e) {
+  writeToEventLog('zabuto:calendar:goto' + ' year=' + e.year + ' month=' + e.month);
 });
 
-$el.on('calendar:day', function (e) {
+$el.on('zabuto:calendar:day', function (e) {
   var now = new Date();
   if (e.today) {
     $(e.element).css('color', 'blue');
@@ -768,7 +758,7 @@ $el.on('calendar:day', function (e) {
   } else {
     $(e.element).css('color', 'green');
   }
-  writeToEventLog('calendar:day' + ' date=' + e.date.toDateString() + ' value=' + e.value + ' today=' + e.today);
+  writeToEventLog('zabuto:calendar:day' + ' date=' + e.date.toDateString() + ' value=' + e.value + ' today=' + e.today);
 });
 
 function writeToEventLog(message) { /* ... */ }
@@ -787,15 +777,15 @@ function writeToEventLog(message) { /* ... */ }
 						});
 					});
 
-					$el.on('calendar:init', function () {
-						writeToEventLog('calendar:init');
+					$el.on('zabuto:calendar:init', function () {
+						writeToEventLog('zabuto:calendar:init');
 					});
 
-					$el.on('calendar:goto', function (e) {
-						writeToEventLog('calendar:goto' + ' year=' + e.year + ' month=' + e.month);
+					$el.on('zabuto:calendar:goto', function (e) {
+						writeToEventLog('zabuto:calendar:goto' + ' year=' + e.year + ' month=' + e.month);
 					});
 
-					$el.on('calendar:day', function (e) {
+					$el.on('zabuto:calendar:day', function (e) {
 						var now = new Date();
 						if (e.today) {
 							$(e.element).css('color', 'blue');
@@ -804,7 +794,7 @@ function writeToEventLog(message) { /* ... */ }
 						} else {
 							$(e.element).css('color', 'green');
 						}
-						writeToEventLog('calendar:day' + ' date=' + e.date.toDateString() + ' value=' + e.value + ' today=' + e.today);
+						writeToEventLog('zabuto:calendar:day' + ' date=' + e.date.toDateString() + ' value=' + e.value + ' today=' + e.today);
 					});
 
 					function writeToEventLog(message) {
@@ -823,11 +813,8 @@ function writeToEventLog(message) { /* ... */ }
 		<div class="row">
 			<div class="col-md-12 col-sm-12">
 				Zabuto Calendar is licensed under the MIT License.
-				<ul class="list-inline pull-right">
-					<li>
-						<a href="https://github.com/zabuto/calendar" target="_blank">github.com/zabuto/calendar</a>
-					</li>
-				</ul>
+				<br>
+				<a href="https://github.com/zabuto/calendar" target="_blank">github.com/zabuto/calendar</a>
 			</div>
 		</div>
 	</div>

@@ -123,7 +123,7 @@ table.lightgrey-weekends tbody td:nth-child(n+6) {
 }
 
 .event-black {
-	background-color: #000;
+	background-color: #000 !important;
 }
 
 .event-colourful {
@@ -158,19 +158,19 @@ table.lightgrey-weekends tbody td:nth-child(n+6) {
 }
 
 .grade-1 {
-	background-color: #fa2601;
+	background-color: #fa2601 !important;
 }
 
 .grade-2 {
-	background-color: #fa8a00;
+	background-color: #fa8a00 !important;
 }
 
 .grade-3 {
-	background-color: #ffeB00;
+	background-color: #ffeB00 !important;
 }
 
 .grade-4 {
-	background-color: #27ab00;
+	background-color: #27ab00 !important;
 }
 
 .console-log {
