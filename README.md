@@ -4,11 +4,7 @@ The Zabuto Calendar jQuery Plugin lets you add a simple month calendar to your w
 
 
 ## Getting Started
-Include jQuery and use the production versions of the [javascript] and accompanied [stylesheet].
-
-[javascript]: https://raw.githubusercontent.com/zabuto/calendar/develop/dist/zabuto_calendar.min.js
-[stylesheet]: https://raw.githubusercontent.com/zabuto/calendar/develop/dist/zabuto_calendar.min.css
-
+Include jQuery and use the minified production versions of the javascript and stylesheet.
 Initialize the calendar on your web page:
 
 ```html
